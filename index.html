@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>火鍋店 ご案内 / Guide / 指南</title>
+<style>
+  :root{
+    --red:#a8201a;
+    --red-dark:#6e1410;
+    --orange:#d4831f;
+    --gold:#d4a843;
+    --gold-light:#f3e3ad;
+    --bg:#fff8ef;
+    --card:#fffdf8;
+    --text:#3b2a25;
+    --muted:#8a7570;
+    --border:#e8d9b5;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Sans","Noto Sans JP","Segoe UI",system-ui,-apple-system,sans-serif;
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(circle at 18px 18px, rgba(168,32,26,.05) 2px, transparent 3px),
+      radial-gradient(circle at 58px 58px, rgba(212,168,67,.08) 2px, transparent 3px);
+    background-size:76px 76px;
+    color:var(--text);
+    line-height:1.7;
+    padding-bottom:40px;
+  }
+  h1,h2,h3{font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;}
+
+  /* i18n visibility */
+  .i18n-block{display:none;}
+  .i18n-inline{display:none;}
+  html[data-lang="ja"] .i18n-block.ja{display:block;}
+  html[data-lang="en"] .i18n-block.en{display:block;}
+  html[data-lang="zh"] .i18n-block.zh{display:block;}
+  html[data-lang="ja"] .i18n-inline.ja{display:inline;}
+  html[data-lang="en"] .i18n-inline.en{display:inline;}
+  html[data-lang="zh"] .i18n-inline.zh{display:inline;}
+
+  header.topbar{
+    background:radial-gradient(ellipse at top, var(--red) 0%, var(--red-dark) 75%);
+    color:#fff;
+    padding:22px 16px 18px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:20;
+    border-bottom:4px solid var(--gold);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+  }
+  .brand{font-size:1.55rem;font-weight:700;letter-spacing:.04em;text-shadow:0 1px 3px rgba(0,0,0,.3);}
+  .brand-address{font-size:.78rem;opacity:.9;margin-top:6px;}
+  .brand-sub{font-size:.85rem;opacity:.9;margin-top:10px;}
+
+  .lang-switch{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:14px;
+  }
+  .lang-switch button{
+    border:1px solid rgba(255,255,255,.6);
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:.9rem;
+    cursor:pointer;
+    transition:background .15s;
+  }
+  .lang-switch button.active{
+    background:#fff;
+    color:var(--red-dark);
+    font-weight:700;
+    border-color:#fff;
+  }
+
+  nav.tabs{
+    display:flex;
+    overflow-x:auto;
+    gap:6px;
+    padding:12px 10px;
+    background:#fff;
+    position:sticky;
+    top:138px;
+    z-index:19;
+    border-bottom:1px solid var(--border);
+    -webkit-overflow-scrolling:touch;
+  }
+  nav.tabs::-webkit-scrollbar{display:none;}
+  .tab-btn{
+    flex:0 0 auto;
+    border:1px solid var(--border);
+    background:#fff7f2;
+    color:var(--text);
+    padding:10px 14px;
+    border-radius:10px;
+    font-size:.88rem;
+    white-space:nowrap;
+    cursor:pointer;
+  }
+  .tab-btn.active{
+    background:linear-gradient(135deg,var(--red),var(--red-dark));
+    border-color:var(--red-dark);
+    color:#fff;
+    font-weight:700;
+    box-shadow:0 2px 6px rgba(110,20,16,.35);
+  }
+
+  main{
+    max-width:680px;
+    margin:0 auto;
+    padding:16px;
+  }
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-top:3px solid var(--gold);
+    border-radius:14px;
+    padding:18px 18px 6px;
+    margin-bottom:16px;
+    box-shadow:0 1px 4px rgba(0,0,0,.04);
+  }
+  .card h2{
+    margin:0 0 10px;
+    font-size:1.05rem;
+    color:var(--red-dark);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .card h2 .ico{font-size:1.2rem;}
+
+  .section-title{
+    font-size:1.15rem;
+    color:var(--red-dark);
+    text-align:center;
+    margin:4px 0 16px;
+    position:relative;
+  }
+  .section-title::after{
+    content:'';
+    display:block;
+    width:60px;
+    height:3px;
+    background:var(--gold);
+    margin:8px auto 0;
+  }
+
+  .tag{
+    display:inline-block;
+    font-size:.7rem;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:999px;
+    margin-left:6px;
+    vertical-align:middle;
+    white-space:nowrap;
+  }
+  .tag-vodka{background:#eaf2ff;color:#2952a3;border:1px solid #b9d0f5;}
+  .tag-spicy{background:#ffe3e0;color:#b3261e;border:1px solid #ffb4ab;}
+  .tag-note{background:#fff3d6;color:#8a5a00;border:1px solid var(--gold-light);}
+  .tag-free{background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9;}
+
+  .menu-set{
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px 16px;
+    margin-bottom:14px;
+    background:#fffaf0;
+  }
+  .menu-set h3{margin:0 0 6px;font-size:1rem;color:var(--red-dark);}
+  .menu-set .items{font-size:.9rem;color:var(--text);}
+  .menu-set .desc{font-size:.82rem;color:var(--muted);margin-top:6px;}
+
+  .herb-card{
+    border:1px dashed var(--gold);
+    border-radius:10px;
+    padding:10px 12px;
+    margin-bottom:10px;
+    background:#fffdf3;
+  }
+  .herb-card .herb-name{font-weight:700;color:var(--red-dark);}
+  .herb-card .herb-effect{font-size:.85rem;color:var(--muted);margin-top:4px;}
+
+  .drink-group{margin-bottom:22px;}
+  .drink-group h3{
+    font-size:1rem;
+    color:var(--red-dark);
+    border-bottom:2px solid var(--gold);
+    padding-bottom:6px;
+    margin-bottom:10px;
+  }
+  .drink-list{list-style:none;padding:0;margin:0;}
+  .drink-list li{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:8px;
+    padding:8px 4px;
+    border-bottom:1px solid var(--border);
+    font-size:.9rem;
+  }
+  .drink-list li:last-child{border-bottom:none;}
+  .drink-list .d-name{flex:1;}
+  .drink-list .d-origin{color:var(--muted);font-size:.8rem;white-space:nowrap;}
+
+  .disclaimer{
+    font-size:.78rem;
+    color:var(--muted);
+    border-top:1px dashed var(--border);
+    margin-top:10px;
+    padding-top:8px;
+  }
+
+  ol, ul{padding-left:1.3em;margin:0 0 16px;}
+  ol li, ul li{margin-bottom:8px;}
+  .note{
+    background:#fff3e6;
+    border-left:4px solid var(--orange);
+    padding:10px 14px;
+    border-radius:8px;
+    font-size:.92rem;
+    margin:0 0 16px;
+  }
+  .placeholder{
+    color:#a85d00;
+    background:#fff0d9;
+    padding:1px 6px;
+    border-radius:5px;
+    font-weight:600;
+  }
+
+  table.allergen{
+    width:100%;
+    border-collapse:collapse;
+    margin-bottom:16px;
+    font-size:.9rem;
+  }
+  table.allergen th, table.allergen td{
+    border:1px solid var(--border);
+    padding:8px 10px;
+    text-align:left;
+  }
+  table.allergen th{background:#fbe9e3;}
+
+  .spice-levels{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+  .spice-levels span{
+    background:#fdeee8;
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:6px 12px;
+    font-size:.85rem;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:.8rem;
+    margin-top:24px;
+    padding:0 16px;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="i18n-inline ja">🍲 ひなべねこ 京都店</span>
+    <span class="i18n-inline en">🍲 Hinabe Neko Kyoto</span>
+    <span class="i18n-inline zh">🍲 火锅猫 京都店</span>
+  </div>
+  <div class="brand-address">
+    <span class="i18n-inline ja">京都府京都市東山区七軒町563番地</span>
+    <span class="i18n-inline en">563 Shichikenmachi, Higashiyama-ku, Kyoto, Japan</span>
+    <span class="i18n-inline zh">京都府京都市东山区七轩町563番地</span>
+  </div>
+  <div class="brand-sub">
+    <span class="i18n-inline ja">言語を選択してください</span>
+    <span class="i18n-inline en">Please select your language</span>
+    <span class="i18n-inline zh">请选择语言</span>
+  </div>
+  <div class="lang-switch">
+    <button data-lang-btn="ja" class="active">日本語</button>
+    <button data-lang-btn="en">English</button>
+    <button data-lang-btn="zh">中文</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="menu">
+    <span class="i18n-inline ja">① メニュー</span>
+    <span class="i18n-inline en">① Menu</span>
+    <span class="i18n-inline zh">① 菜单</span>
+  </button>
+  <button class="tab-btn" data-tab="order">
+    <span class="i18n-inline ja">② 注文方法</span>
+    <span class="i18n-inline en">② How to Order</span>
+    <span class="i18n-inline zh">② 点餐方法</span>
+  </button>
+  <button class="tab-btn" data-tab="rules">
+    <span class="i18n-inline ja">③ 鍋の食べ方</span>
+    <span class="i18n-inline en">③ Hot Pot Rules</span>
+    <span class="i18n-inline zh">③ 火锅吃法</span>
+  </button>
+  <button class="tab-btn" data-tab="allergy">
+    <span class="i18n-inline ja">④ アレルギー</span>
+    <span class="i18n-inline en">④ Allergies</span>
+    <span class="i18n-inline zh">④ 过敏信息</span>
+  </button>
+  <button class="tab-btn" data-tab="drinks">
+    <span class="i18n-inline ja">⑤ ドリンク</span>
+    <span class="i18n-inline en">⑤ Drinks</span>
+    <span class="i18n-inline zh">⑤ 饮品</span>
+  </button>
+  <button class="tab-btn" data-tab="staff">
+    <span class="i18n-inline ja">⑥ 呼出し・会計</span>
+    <span class="i18n-inline en">⑥ Staff &amp; Payment</span>
+    <span class="i18n-inline zh">⑥ 呼叫・结账</span>
+  </button>
+</nav>
+
+<main>
+
+  <!-- ============ 0. MENU ============ -->
+  <section id="menu" class="tab-panel active">
+
+    <div class="card">
+      <h2><span class="ico">🍲</span>
+        <span class="i18n-inline ja">コース内容(全品種ともコースのみ)</span>
+        <span class="i18n-inline en">Course Menu (Course-Only Dining)</span>
+        <span class="i18n-inline zh">套餐内容(仅提供套餐)</span>
+      </h2>
+      <ul>
+        <li class="i18n-block ja">野菜と副菜の盛り合わせ</li>
+        <li class="i18n-block en">Assorted Vegetable &amp; Side Dish Platter</li>
+        <li class="i18n-block zh">蔬菜和小菜拼盘</li>
+
+        <li class="i18n-block ja">ラム肉・豚肉・鶏肉</li>
+        <li class="i18n-block en">Lamb, Pork, Chicken</li>
+        <li class="i18n-block zh">羊肉、猪肉、鸡肉</li>
+
+        <li class="i18n-block ja">水餃子</li>
+        <li class="i18n-block en">Boiled Dumplings (Sui-gyoza)</li>
+        <li class="i18n-block zh">水饺</li>
+
+        <li class="i18n-block ja">中華麺</li>
+        <li class="i18n-block en">Chinese Noodles</li>
+        <li class="i18n-block zh">中华面</li>
+
+        <li class="i18n-block ja">ミニデザート</li>
+        <li class="i18n-block en">Mini Dessert</li>
+        <li class="i18n-block zh">迷你甜点</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">➕</span>
+        <span class="i18n-inline ja">追加メニュー</span>
+        <span class="i18n-inline en">Optional Add-on Sets</span>
+        <span class="i18n-inline zh">追加菜单</span>
+      </h2>
+
+      <div class="menu-set">
+        <h3>
+          <span class="i18n-inline ja">ジビエセット</span>
+          <span class="i18n-inline en">Game Meat Set</span>
+          <span class="i18n-inline zh">野味套餐</span>
+        </h3>
+        <div class="items">
+          <span class="i18n-inline ja">猪・鹿・鴨</span>
+          <span class="i18n-inline en">Wild Boar, Venison, Duck</span>
+          <span class="i18n-inline zh">野猪肉、鹿肉、鸭肉</span>
+        </div>
+      </div>
+
+      <div class="menu-set">
+        <h3>
+          <span class="i18n-inline ja">海鮮セット</span>
+          <span class="i18n-inline en">Seafood Set</span>
+          <span class="i18n-inline zh">海鲜套餐</span>
+          <span class="tag tag-note">
+            <span class="i18n-inline ja">殻まで食べられます</span>
+            <span class="i18n-inline en">Shell Edible</span>
+            <span class="i18n-inline zh">连壳可食</span>
+          </span>
+        </h3>
+        <div class="items">
+          <span class="i18n-inline ja">海老・ホタテ・松笠イカ</span>
+          <span class="i18n-inline en">Shrimp, Scallop, Pinecone-cut Squid</span>
+          <span class="i18n-inline zh">虾、扇贝、松笠鱿鱼</span>
+        </div>
+        <div class="desc">
+          <span class="i18n-block ja">※海老はソフトシェルシュリンプを使用しており、殻まで丸ごとお召し上がりいただけます。</span>
+          <span class="i18n-block en">※ The shrimp served is soft-shell shrimp — the shell is edible and can be eaten whole.</span>
+          <span class="i18n-block zh">※ 本店使用软壳虾，连壳都可以一起食用。</span>
+        </div>
+      </div>
+
+      <div class="menu-set">
+        <h3>
+          <span class="i18n-inline ja">特選漢方生薬セット</span>
+          <span class="i18n-inline en">Premium Chinese Herbal Medicine Set</span>
+          <span class="i18n-inline zh">特选中药养生套餐</span>
+        </h3>
+        <div class="items">
+          <span class="i18n-inline ja">会津人参・アガリクス茸・タツノオトシゴ・鹿茸・冬虫夏草</span>
+          <span class="i18n-inline en">Aizu Ginseng, Agaricus Mushroom, Dried Seahorse, Deer Antler Velvet, Cordyceps</span>
+          <span class="i18n-inline zh">会津人参、姬松茸、海马、鹿茸、冬虫夏草</span>
+        </div>
+        <div class="desc">
+          <span class="i18n-block ja">※各生薬の伝承的な効能は「④ アレルギー」タブ下部をご覧ください。</span>
+          <span class="i18n-block en">※ See the bottom of the "④ Allergies" tab for the traditional benefits attributed to each herb.</span>
+          <span class="i18n-block zh">※ 各药材的传统功效说明请见"④ 过敏信息"标签页下方。</span>
+        </div>
+      </div>
+
+      <div class="menu-set">
+        <h3>
+          <span class="i18n-inline ja">付けダレ・薬味</span>
+          <span class="i18n-inline en">Dipping Sauces &amp; Condiments</span>
+          <span class="i18n-inline zh">蘸料・调味料</span>
+        </h3>
+        <div class="items">
+          <span class="i18n-inline ja">パクチー／ネギ塩ごま油／麻辣油</span>
+          <span class="i18n-inline en">Cilantro / Scallion Salt Sesame Oil / Mala Spicy Oil</span>
+          <span class="i18n-inline zh">香菜／葱盐芝麻油／麻辣油</span>
+        </div>
+        <div class="items" style="margin-top:6px;">
+          <span class="i18n-inline ja">激辛セット(麻辣油・国産キャロライナリーパー・生唐辛子)</span>
+          <span class="i18n-inline en">Extra-Spicy Set (Mala Oil, Domestic Carolina Reaper, Fresh Chili Pepper)</span>
+          <span class="i18n-inline zh">超辣套装(麻辣油・国产卡罗莱纳死神辣椒・生辣椒)</span>
+          <span class="tag tag-spicy">
+            <span class="i18n-inline ja">激辛注意</span>
+            <span class="i18n-inline en">Caution: Very Hot</span>
+            <span class="i18n-inline zh">注意：极辣</span>
+          </span>
+        </div>
+        <div class="desc">
+          <span class="i18n-block ja">※キャロライナ・リーパーは世界最高クラスの辛さを持つ唐辛子です。辛いものが苦手な方はご注意ください。</span>
+          <span class="i18n-block en">※ Carolina Reaper is one of the hottest chili peppers in the world. Please use caution if you are sensitive to spicy food.</span>
+          <span class="i18n-block zh">※ 卡罗莱纳死神辣椒是世界上最辣的辣椒之一，不喜辣的客人请谨慎选用。</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ 1. ORDER ============ -->
+  <section id="order" class="tab-panel">
+
+    <div class="card">
+      <h2><span class="ico">📱</span>
+        <span class="i18n-inline ja">タブレットでご注文の場合</span>
+        <span class="i18n-inline en">Ordering via Tablet</span>
+        <span class="i18n-inline zh">使用平板点餐</span>
+      </h2>
+      <ol>
+        <li class="i18n-block ja">テーブルのタブレットを操作し、メニューからお好きな商品をタップしてください。</li>
+        <li class="i18n-block en">Tap the items you'd like from the menu on the tablet at your table.</li>
+        <li class="i18n-block zh">在桌上的平板电脑菜单中点选您想要的菜品。</li>
+
+        <li class="i18n-block ja">個数を選択し「カートに追加」を押してください。</li>
+        <li class="i18n-block en">Select the quantity and press "Add to Cart."</li>
+        <li class="i18n-block zh">选择数量后点击"加入购物车"。</li>
+
+        <li class="i18n-block ja">注文内容を確認し「注文する」を押すと、厨房に送信されます。</li>
+        <li class="i18n-block en">Review your order and press "Place Order" to send it to the kitchen.</li>
+        <li class="i18n-block zh">确认订单内容后点击"下单"，订单将发送至厨房。</li>
+
+        <li class="i18n-block ja">追加注文も同じ手順で何度でもご注文いただけます。</li>
+        <li class="i18n-block en">You can repeat these steps anytime to add more items.</li>
+        <li class="i18n-block zh">如需追加点餐，可重复以上步骤，次数不限。</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">📷</span>
+        <span class="i18n-inline ja">スマートフォンでご注文の場合(QRコード)</span>
+        <span class="i18n-inline en">Ordering via Smartphone (QR Code)</span>
+        <span class="i18n-inline zh">使用手机扫码点餐</span>
+      </h2>
+      <ol>
+        <li class="i18n-block ja">テーブルのQRコードをカメラで読み取ってください。</li>
+        <li class="i18n-block en">Scan the QR code on your table with your phone's camera.</li>
+        <li class="i18n-block zh">用手机摄像头扫描桌上的二维码。</li>
+
+        <li class="i18n-block ja">表示されたメニュー画面からお好きな商品を選択してください。</li>
+        <li class="i18n-block en">Choose items from the menu that appears.</li>
+        <li class="i18n-block zh">在弹出的菜单页面中选择您想要的菜品。</li>
+
+        <li class="i18n-block ja">「注文を確定する」を押すと注文が完了します。</li>
+        <li class="i18n-block en">Press "Confirm Order" to complete your order.</li>
+        <li class="i18n-block zh">点击"确认下单"即完成点餐。</li>
+      </ol>
+
+      <div class="note">
+        <p class="i18n-block ja">・ラストオーダーは閉店<span class="placeholder">30分前</span>です。<br>・食べ放題プランのお客様は、お一人様ずつのご注文となります。</p>
+        <p class="i18n-block en">・Last order is <span class="placeholder">30 minutes</span> before closing.<br>・For all-you-can-eat plans, each guest must order individually.</p>
+        <p class="i18n-block zh">・最后点餐时间为闭店前<span class="placeholder">30分钟</span>。<br>・自助畅吃套餐需每位客人分别点餐。</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ 2. RULES ============ -->
+  <section id="rules" class="tab-panel">
+
+    <div class="card">
+      <h2><span class="ico">🥢</span>
+        <span class="i18n-inline ja">箸の使い分け</span>
+        <span class="i18n-inline en">Chopstick Etiquette</span>
+        <span class="i18n-inline zh">公用筷使用方法</span>
+      </h2>
+      <p class="i18n-block ja">生肉・魚介類は専用の箸(取り箸)を使い、食べる箸とは分けてください。</p>
+      <p class="i18n-block en">Please use the serving chopsticks for raw meat and seafood, separate from the chopsticks you eat with.</p>
+      <p class="i18n-block zh">生肉、海鲜请使用公用筷（夹菜筷），与自己用餐的筷子分开使用。</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">⏱️</span>
+        <span class="i18n-inline ja">加熱時間の目安</span>
+        <span class="i18n-inline en">Approximate Cooking Times</span>
+        <span class="i18n-inline zh">加热时间参考</span>
+      </h2>
+      <ul>
+        <li class="i18n-block ja">薄切り肉:色が変わるまで(約10〜15秒)</li>
+        <li class="i18n-block en">Thinly sliced meat: until color changes (about 10–15 sec)</li>
+        <li class="i18n-block zh">薄切肉片：变色即可（约10～15秒）</li>
+
+        <li class="i18n-block ja">魚介類・つみれ:火が通るまで(約2〜3分)</li>
+        <li class="i18n-block en">Seafood / fish balls: until fully cooked (about 2–3 min)</li>
+        <li class="i18n-block zh">海鲜、鱼丸：完全熟透（约2～3分钟）</li>
+
+        <li class="i18n-block ja">野菜・きのこ:お好みの柔らかさになるまで(約2〜3分)</li>
+        <li class="i18n-block en">Vegetables / mushrooms: until your preferred tenderness (about 2–3 min)</li>
+        <li class="i18n-block zh">蔬菜、菌类：煮至您喜欢的软硬度（约2～3分钟）</li>
+
+        <li class="i18n-block ja">春雨・麺類:具材を食べ終えた後、スープを吸わせてどうぞ</li>
+        <li class="i18n-block en">Glass noodles / noodles: add after other ingredients, to soak up the broth</li>
+        <li class="i18n-block zh">粉丝、面类：建议最后加入，吸收汤汁后食用</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">🔥</span>
+        <span class="i18n-inline ja">スープ・火力・たれについて</span>
+        <span class="i18n-inline en">Broth, Heat &amp; Dipping Sauce</span>
+        <span class="i18n-inline zh">汤底・火力・蘸料说明</span>
+      </h2>
+      <p class="i18n-block ja">だしが少なくなったら店員にお声がけください(スープの追加は<span class="placeholder">無料/有料</span>)。<br>たれは卓上のごま・ポン酢・薬味を自由に組み合わせてお作りいただけます。<br>火力は卓上のつまみで調整できます。やけどにご注意ください。<br>お子様連れのお客様は、鍋への接触に十分ご注意ください。</p>
+      <p class="i18n-block en">If the broth runs low, please let staff know (refills may be <span class="placeholder">free / charged</span>).<br>Feel free to mix your own dipping sauce from the sesame sauce, ponzu, and condiments on the table.<br>Heat level can be adjusted with the dial on the table — please be careful of burns.<br>Guests with small children should take extra care around the pot.</p>
+      <p class="i18n-block zh">汤底变少时请告知店员（续汤可能<span class="placeholder">免费/收费</span>）。<br>蘸料可自由搭配桌上的芝麻酱、柚子醋及各种调味料。<br>火力可使用桌上的旋钮调节，请注意避免烫伤。<br>带小朋友的客人请特别留意，避免靠近锅具。</p>
+    </div>
+
+  </section>
+
+  <!-- ============ 3. ALLERGY ============ -->
+  <section id="allergy" class="tab-panel">
+
+    <div class="card">
+      <h2><span class="ico">⚠️</span>
+        <span class="i18n-inline ja">アレルギー表示</span>
+        <span class="i18n-inline en">Allergen Information</span>
+        <span class="i18n-inline zh">过敏原信息</span>
+      </h2>
+      <p class="i18n-block ja">当店のメニューには、卵・乳・小麦・えび・かに・落花生・そば 等を含む商品がございます。<br>アレルギーをお持ちのお客様は、<strong>ご注文前に必ず店員にお申し出ください</strong>。</p>
+      <p class="i18n-block en">Our menu includes items containing egg, dairy, wheat, shrimp, crab, peanuts, buckwheat, and other allergens.<br><strong>If you have any food allergies, please inform a staff member before ordering.</strong></p>
+      <p class="i18n-block zh">本店菜单中含有蛋、乳制品、小麦、虾、蟹、花生、荞麦等过敏原成分。<br><strong>如有食物过敏，请在点餐前务必告知店员。</strong></p>
+
+      <table class="allergen">
+        <tr>
+          <th class="i18n-inline ja">主なアレルゲン</th>
+          <th class="i18n-inline en">Common Allergens</th>
+          <th class="i18n-inline zh">主要过敏原</th>
+        </tr>
+        <tr>
+          <td>
+            <span class="i18n-inline ja">卵・乳・小麦・そば</span>
+            <span class="i18n-inline en">Egg / Dairy / Wheat / Buckwheat</span>
+            <span class="i18n-inline zh">蛋 / 乳制品 / 小麦 / 荞麦</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="i18n-inline ja">えび・かに・いか</span>
+            <span class="i18n-inline en">Shrimp / Crab / Squid</span>
+            <span class="i18n-inline zh">虾 / 蟹 / 鱿鱼</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="i18n-inline ja">落花生・くるみ・大豆</span>
+            <span class="i18n-inline en">Peanuts / Walnuts / Soy</span>
+            <span class="i18n-inline zh">花生 / 核桃 / 大豆</span>
+          </td>
+        </tr>
+      </table>
+      <p class="note">
+        <span class="i18n-block ja">各メニューの詳しいアレルゲン表示は、メニュー表またはタブレットの商品詳細でご確認いただけます。</span>
+        <span class="i18n-block en">Detailed allergen information for each dish can be found on the printed menu or in the item details on the tablet.</span>
+        <span class="i18n-block zh">各菜品的过敏原详细信息可在纸质菜单或平板的商品详情中查看。</span>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">🌶️</span>
+        <span class="i18n-inline ja">辛さレベル</span>
+        <span class="i18n-inline en">Spice Levels</span>
+        <span class="i18n-inline zh">辣度等级</span>
+      </h2>
+      <div class="spice-levels">
+        <span class="i18n-inline ja">辛くない</span><span class="i18n-inline en">Mild</span><span class="i18n-inline zh">不辣</span>
+        <span class="i18n-inline ja">普通</span><span class="i18n-inline en">Medium</span><span class="i18n-inline zh">微辣</span>
+        <span class="i18n-inline ja">辛い</span><span class="i18n-inline en">Spicy</span><span class="i18n-inline zh">辣</span>
+        <span class="i18n-inline ja">激辛</span><span class="i18n-inline en">Extra Spicy</span><span class="i18n-inline zh">超辣</span>
+      </div>
+      <p class="i18n-block ja">食材の産地・原材料について詳しくお知りになりたい場合も、お気軽にスタッフへお尋ねください。</p>
+      <p class="i18n-block en">Please feel free to ask staff for more details about ingredient origins or composition.</p>
+      <p class="i18n-block zh">如需了解食材产地或成分的详细信息，请随时询问店员。</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">🐉</span>
+        <span class="i18n-inline ja">特選漢方生薬について(伝承的な効能)</span>
+        <span class="i18n-inline en">About the Premium Herbal Ingredients (Traditional Benefits)</span>
+        <span class="i18n-inline zh">关于特选中药养生食材(传统功效)</span>
+      </h2>
+
+      <div class="herb-card">
+        <div class="herb-name">
+          <span class="i18n-inline ja">会津人参(オタネニンジン)</span>
+          <span class="i18n-inline en">Aizu Ginseng</span>
+          <span class="i18n-inline zh">会津人参(高丽人参)</span>
+        </div>
+        <div class="herb-effect">
+          <span class="i18n-block ja">福島県会津地方で育てられる高麗人参。中医学では滋養強壮・血行促進・疲労回復によいとされ、古くから貴重な薬用人参として用いられてきました。</span>
+          <span class="i18n-block en">A type of Korean ginseng cultivated in the Aizu region of Fukushima. In traditional Chinese medicine it is valued as a tonic root said to support vitality, circulation, and recovery from fatigue.</span>
+          <span class="i18n-block zh">产自福岛县会津地区的高丽人参。在中医里被视为滋补强壮、促进血液循环、缓解疲劳的珍贵药用人参。</span>
+        </div>
+      </div>
+
+      <div class="herb-card">
+        <div class="herb-name">
+          <span class="i18n-inline ja">アガリクス茸</span>
+          <span class="i18n-inline en">Agaricus Mushroom</span>
+          <span class="i18n-inline zh">姬松茸</span>
+        </div>
+        <div class="herb-effect">
+          <span class="i18n-block ja">ブラジル原産の機能性キノコ。免疫力のサポートや抗酸化作用が期待されるとして、健康食材として親しまれています。</span>
+          <span class="i18n-block en">A functional mushroom originally from Brazil, popularly valued for its potential to support immune function and provide antioxidant benefits.</span>
+          <span class="i18n-block zh">原产于巴西的功能性菇类，作为有助于支持免疫力、具有抗氧化作用的健康食材而广受喜爱。</span>
+        </div>
+      </div>
+
+      <div class="herb-card">
+        <div class="herb-name">
+          <span class="i18n-inline ja">タツノオトシゴ(海馬)</span>
+          <span class="i18n-inline en">Dried Seahorse (Hai Ma)</span>
+          <span class="i18n-inline zh">海马</span>
+        </div>
+        <div class="herb-effect">
+          <span class="i18n-block ja">中医学で「海馬」と呼ばれる伝統的な生薬。滋養強壮・血行促進を目的に、古くから貴重な食材として用いられてきました。</span>
+          <span class="i18n-block en">Known in traditional Chinese medicine as "Hai Ma," this is a prized traditional ingredient long used to support vitality and circulation.</span>
+          <span class="i18n-block zh">中医学中称为"海马"，自古以来被视为珍贵食材，用于滋补强壮、促进血液循环。</span>
+        </div>
+      </div>
+
+      <div class="herb-card">
+        <div class="herb-name">
+          <span class="i18n-inline ja">鹿茸(ロクジョウ)</span>
+          <span class="i18n-inline en">Deer Antler Velvet</span>
+          <span class="i18n-inline zh">鹿茸</span>
+        </div>
+        <div class="herb-effect">
+          <span class="i18n-block ja">鹿の若い角を乾燥させた生薬で、中医学における代表的な強壮素材のひとつ。体を温め、活力を補うとされています。</span>
+          <span class="i18n-block en">Made from the dried velvet of young deer antlers, this is one of the most celebrated tonics in Chinese medicine, traditionally said to warm the body and replenish vitality.</span>
+          <span class="i18n-block zh">将鹿的嫩角干燥制成的传统药材，是中医里具代表性的强壮滋补食材，相传可温补身体、补充元气。</span>
+        </div>
+      </div>
+
+      <div class="herb-card">
+        <div class="herb-name">
+          <span class="i18n-inline ja">冬虫夏草(トウチュウカソウ)</span>
+          <span class="i18n-inline en">Cordyceps</span>
+          <span class="i18n-inline zh">冬虫夏草</span>
+        </div>
+        <div class="herb-effect">
+          <span class="i18n-block ja">高地に生息する蛾の幼虫に寄生する菌類から作られる、中国伝統医学を代表する滋養強壮素材。スタミナや活力を支えるとされています。</span>
+          <span class="i18n-block en">Formed from a fungus that grows on high-altitude moth larvae, this is one of the most renowned tonics in Chinese medicine, traditionally associated with stamina and vitality.</span>
+          <span class="i18n-block zh">由寄生在高原蛾类幼虫上的菌类制成，是中国传统医学中极具代表性的滋补食材，相传有助于增强体力与元气。</span>
+        </div>
+      </div>
+
+      <p class="disclaimer">
+        <span class="i18n-block ja">※上記は中国伝統医学(中医学)に伝わる経験的な効能の紹介であり、医学的な効果・効能を保証するものではありません。持病のある方・お薬を服用中の方は、ご注文前にスタッフにご相談ください。</span>
+        <span class="i18n-block en">※ The descriptions above introduce traditional effects passed down in Chinese medicine and do not constitute a guarantee of medical efficacy. Guests with health conditions or taking medication should consult staff before ordering.</span>
+        <span class="i18n-block zh">※ 以上介绍为中医传统经验功效说明，并非医学疗效保证。患有疾病或服药中的客人，请在点餐前咨询店员。</span>
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ============ 5. DRINKS ============ -->
+  <section id="drinks" class="tab-panel">
+
+    <div class="card">
+      <h2><span class="ico">🍶</span>
+        <span class="i18n-inline ja">アルコール</span>
+        <span class="i18n-inline en">Alcoholic Drinks</span>
+        <span class="i18n-inline zh">酒类饮品</span>
+      </h2>
+      <ul class="drink-list">
+        <li><span class="d-name">
+          <span class="i18n-inline ja">瓶ビール アサヒスーパードライ</span>
+          <span class="i18n-inline en">Bottled Beer — Asahi Super Dry</span>
+          <span class="i18n-inline zh">瓶装啤酒 朝日超爽</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">自家製ジントニック</span>
+          <span class="i18n-inline en">Homemade Gin Tonic</span>
+          <span class="i18n-inline zh">自制金汤力</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">天然ヒノキトニック</span>
+          <span class="i18n-inline en">Natural Hinoki (Cypress) Tonic</span>
+          <span class="i18n-inline zh">天然桧木汤力</span>
+          <span class="tag tag-vodka"><span class="i18n-inline ja">ウォッカベース</span><span class="i18n-inline en">Vodka Base</span><span class="i18n-inline zh">伏特加基酒</span></span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">スパイスジンジャーハイ</span>
+          <span class="i18n-inline en">Spiced Ginger Highball</span>
+          <span class="i18n-inline zh">香辛姜汁高球</span>
+          <span class="tag tag-vodka"><span class="i18n-inline ja">ウォッカベース</span><span class="i18n-inline en">Vodka Base</span><span class="i18n-inline zh">伏特加基酒</span></span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">紫蘇クランベリー</span>
+          <span class="i18n-inline en">Shiso Cranberry</span>
+          <span class="i18n-inline zh">紫苏蔓越莓</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">菊花ジャスミンハイ</span>
+          <span class="i18n-inline en">Chrysanthemum Jasmine Highball</span>
+          <span class="i18n-inline zh">菊花茉莉高球</span>
+          <span class="tag tag-vodka"><span class="i18n-inline ja">ウォッカベース</span><span class="i18n-inline en">Vodka Base</span><span class="i18n-inline zh">伏特加基酒</span></span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">黒豆ウーロンハイ</span>
+          <span class="i18n-inline en">Black Soybean Oolong Highball</span>
+          <span class="i18n-inline zh">黑豆乌龙高球</span>
+          <span class="tag tag-vodka"><span class="i18n-inline ja">ウォッカベース</span><span class="i18n-inline en">Vodka Base</span><span class="i18n-inline zh">伏特加基酒</span></span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">陳皮ハイボール</span>
+          <span class="i18n-inline en">Chenpi (Dried Citrus Peel) Highball</span>
+          <span class="i18n-inline zh">陈皮高球威士忌</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">檸檬サワー</span>
+          <span class="i18n-inline en">Lemon Sour</span>
+          <span class="i18n-inline zh">柠檬酸味鸡尾酒</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">ベイリーズ豆乳(無調整豆乳)</span>
+          <span class="i18n-inline en">Baileys with Soy Milk (Unsweetened)</span>
+          <span class="i18n-inline zh">百利甜豆乳(无调整豆乳)</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">豆乳紅茶(無調整豆乳)</span>
+          <span class="i18n-inline en">Soy Milk Black Tea (Unsweetened)</span>
+          <span class="i18n-inline zh">豆乳红茶(无调整豆乳)</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">芋焼酎 赤兎馬ブルー</span>
+          <span class="i18n-inline en">Imo Shochu "Sekitoba Blue"</span>
+          <span class="i18n-inline zh">芋烧酒 赤兔马蓝</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">麦焼酎 泥亀</span>
+          <span class="i18n-inline en">Mugi Shochu "Deigame"</span>
+          <span class="i18n-inline zh">麦烧酒 泥龟</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">紫蘇焼酎 鍛高譚</span>
+          <span class="i18n-inline en">Shiso Shochu "Tantakatan"</span>
+          <span class="i18n-inline zh">紫苏烧酒 镬高谭</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">紹興酒</span>
+          <span class="i18n-inline en">Shaoxing Wine</span>
+          <span class="i18n-inline zh">绍兴酒</span>
+        </span></li>
+      </ul>
+      <p class="disclaimer">
+        <span class="i18n-block ja">※「ウォッカベース」のドリンクはウォッカを使用しています。お酒の種類にこだわりのある方はご注意ください。20歳未満の方への酒類提供はできません。</span>
+        <span class="i18n-block en">※ Drinks marked "Vodka Base" are made with vodka — please note this if you have spirit preferences. Alcohol cannot be served to guests under 20 years old.</span>
+        <span class="i18n-block zh">※ 标注"伏特加基酒"的饮品使用伏特加调制，对基酒种类有特殊要求的客人请留意。未满20岁不提供酒类。</span>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">🥤</span>
+        <span class="i18n-inline ja">ソフトドリンク</span>
+        <span class="i18n-inline en">Soft Drinks</span>
+        <span class="i18n-inline zh">无酒精饮品</span>
+      </h2>
+      <ul class="drink-list">
+        <li><span class="d-name">
+          <span class="i18n-inline ja">ジャスミン茶</span>
+          <span class="i18n-inline en">Jasmine Tea</span>
+          <span class="i18n-inline zh">茉莉花茶</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">グレープフルーツジャスミン茶</span>
+          <span class="i18n-inline en">Grapefruit Jasmine Tea</span>
+          <span class="i18n-inline zh">葡萄柚茉莉花茶</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">烏龍茶</span>
+          <span class="i18n-inline en">Oolong Tea</span>
+          <span class="i18n-inline zh">乌龙茶</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">白桃烏龍茶</span>
+          <span class="i18n-inline en">White Peach Oolong Tea</span>
+          <span class="i18n-inline zh">白桃乌龙茶</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">辛口ジンジャーエール</span>
+          <span class="i18n-inline en">Dry Ginger Ale</span>
+          <span class="i18n-inline zh">干姜汁汽水</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">クランベリージュース</span>
+          <span class="i18n-inline en">Cranberry Juice</span>
+          <span class="i18n-inline zh">蔓越莓汁</span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">ノンアルコール梅酒 百年零</span>
+          <span class="i18n-inline en">Non-Alcoholic Plum Wine "Hyakunen Zero"</span>
+          <span class="i18n-inline zh">无酒精梅酒 百年零</span>
+          <span class="tag tag-free"><span class="i18n-inline ja">ノンアル</span><span class="i18n-inline en">Alcohol-Free</span><span class="i18n-inline zh">无酒精</span></span>
+        </span></li>
+        <li><span class="d-name">
+          <span class="i18n-inline ja">豆乳キャラメル(無調整豆乳)</span>
+          <span class="i18n-inline en">Soy Milk Caramel (Unsweetened)</span>
+          <span class="i18n-inline zh">豆乳焦糖(无调整豆乳)</span>
+        </span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">🍵</span>
+        <span class="i18n-inline ja">薬膳茶</span>
+        <span class="i18n-inline en">Medicinal Herbal Tea</span>
+        <span class="i18n-inline zh">药膳茶</span>
+      </h2>
+
+      <div class="herb-card">
+        <div class="herb-name">
+          <span class="i18n-inline ja">どくだみ茶</span>
+          <span class="i18n-inline en">Dokudami Tea (Houttuynia)</span>
+          <span class="i18n-inline zh">鱼腥草茶</span>
+        </div>
+        <div class="herb-effect">
+          <span class="i18n-block ja">日本三大民間薬のひとつ。古くから十の効能があるといわれ、用いられてきました。ノンカフェイン。</span>
+          <span class="i18n-block en">One of Japan's three major folk remedies, traditionally said to have ten beneficial properties. Caffeine-free.</span>
+          <span class="i18n-block zh">日本三大民间药之一，自古便被认为具有十种功效而广泛使用。不含咖啡因。</span>
+        </div>
+      </div>
+
+      <div class="herb-card">
+        <div class="herb-name">
+          <span class="i18n-inline ja">野草茶</span>
+          <span class="i18n-inline en">Wild Herb Blend Tea</span>
+          <span class="i18n-inline zh">野草茶</span>
+        </div>
+        <div class="herb-effect">
+          <span class="i18n-block ja">クマツヅラ・ハトムギ・タラノキ・ニワトコ・クコの葉・弟切草・クマザサの7種類の野草をブレンド。ノンカフェイン。</span>
+          <span class="i18n-block en">A blend of 7 wild herbs: vervain, Job's tears, Japanese angelica tree, Japanese elder, goji leaf, St. John's wort, and kuma bamboo grass. Caffeine-free.</span>
+          <span class="i18n-block zh">由马鞭草、薏米、辽东楤木、接骨木、枸杞叶、贯叶连翘、熊笹七种野草调配而成。不含咖啡因。</span>
+        </div>
+      </div>
+
+      <div class="herb-card">
+        <div class="herb-name">
+          <span class="i18n-inline ja">オタネニンジン茶</span>
+          <span class="i18n-inline en">Japanese Ginseng Tea</span>
+          <span class="i18n-inline zh">高丽人参茶</span>
+        </div>
+        <div class="herb-effect">
+          <span class="i18n-block ja">貴重な国産高麗人参(会津人参)と8種類の野草をブレンドした養生茶。ノンカフェイン。</span>
+          <span class="i18n-block en">A wellness tea blending precious domestically grown ginseng (Aizu ginseng) with 8 kinds of wild herbs. Caffeine-free.</span>
+          <span class="i18n-block zh">使用珍贵的日本国产高丽人参(会津人参)与8种野草调配而成的养生茶。不含咖啡因。</span>
+        </div>
+      </div>
+
+      <p class="disclaimer">
+        <span class="i18n-block ja">※野草茶には「弟切草(セイヨウオトギリソウ)」を含みます。一部のお薬と相互作用する可能性があるため、お薬を服用中の方は事前にスタッフへご相談ください。上記の効能は中医学・民間療法に伝わる伝承的なものであり、医学的効果を保証するものではありません。</span>
+        <span class="i18n-block en">※ The wild herb tea contains St. John's wort, which may interact with certain medications — guests taking medication should consult staff before ordering. The benefits described above are traditional ones from folk and Chinese medicine practices and do not guarantee any medical effect.</span>
+        <span class="i18n-block zh">※ 野草茶中含有贯叶连翘(西洋金丝草)，可能与部分药物产生相互作用，服药中的客人请提前告知店员。以上功效为中医及民间疗法的传统说法，并非医学疗效保证。</span>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">🍑</span>
+        <span class="i18n-inline ja">梅酒</span>
+        <span class="i18n-inline en">Umeshu (Plum Wine)</span>
+        <span class="i18n-inline zh">梅酒</span>
+      </h2>
+      <p>
+        <span class="i18n-block ja">梅酒に含まれるクエン酸やポリフェノールは、疲労回復・食欲増進・血流のサポートに役立つといわれています。蔵元ごとに個性豊かな梅酒を飲み比べてお楽しみください。</span>
+        <span class="i18n-block en">Plum wine's citric acid and polyphenols are traditionally said to help ease fatigue, stimulate appetite, and support circulation. Enjoy comparing the distinct character of each regional brew.</span>
+        <span class="i18n-block zh">梅酒中所含的柠檬酸和多酚成分，传统上被认为有助于缓解疲劳、增进食欲及促进血液循环。欢迎品鉴比较来自日本各地、风味各异的梅酒。</span>
+      </p>
+      <ul class="drink-list">
+        <li><span class="d-name"><span class="i18n-inline ja">ローズ梅酒</span><span class="i18n-inline en">Rose Umeshu</span><span class="i18n-inline zh">玫瑰梅酒</span></span><span class="d-origin"><span class="i18n-inline ja">愛知</span><span class="i18n-inline en">Aichi</span><span class="i18n-inline zh">爱知</span></span></li>
+        <li><span class="d-name"><span class="i18n-inline ja">木内梅酒</span><span class="i18n-inline en">Kiuchi Umeshu</span><span class="i18n-inline zh">木内梅酒</span></span><span class="d-origin"><span class="i18n-inline ja">茨城</span><span class="i18n-inline en">Ibaraki</span><span class="i18n-inline zh">茨城</span></span></li>
+        <li><span class="d-name"><span class="i18n-inline ja">紅茶梅酒</span><span class="i18n-inline en">Black Tea Umeshu</span><span class="i18n-inline zh">红茶梅酒</span></span><span class="d-origin"><span class="i18n-inline ja">愛知</span><span class="i18n-inline en">Aichi</span><span class="i18n-inline zh">爱知</span></span></li>
+        <li><span class="d-name"><span class="i18n-inline ja">天空の月</span><span class="i18n-inline en">Tenku no Tsuki</span><span class="i18n-inline zh">天空之月</span></span><span class="d-origin"><span class="i18n-inline ja">大分</span><span class="i18n-inline en">Oita</span><span class="i18n-inline zh">大分</span></span></li>
+        <li><span class="d-name"><span class="i18n-inline ja">百年梅酒</span><span class="i18n-inline en">Hyakunen Umeshu</span><span class="i18n-inline zh">百年梅酒</span></span><span class="d-origin"><span class="i18n-inline ja">茨城</span><span class="i18n-inline en">Ibaraki</span><span class="i18n-inline zh">茨城</span></span></li>
+        <li><span class="d-name"><span class="i18n-inline ja">マツイウイスキー梅酒</span><span class="i18n-inline en">Matsui Whisky Umeshu</span><span class="i18n-inline zh">松井威士忌梅酒</span></span><span class="d-origin"><span class="i18n-inline ja">鳥取</span><span class="i18n-inline en">Tottori</span><span class="i18n-inline zh">鸟取</span></span></li>
+        <li><span class="d-name"><span class="i18n-inline ja">北雪梅酒</span><span class="i18n-inline en">Hokusetsu Umeshu</span><span class="i18n-inline zh">北雪梅酒</span></span><span class="d-origin"><span class="i18n-inline ja">新潟</span><span class="i18n-inline en">Niigata</span><span class="i18n-inline zh">新潟</span></span></li>
+        <li><span class="d-name"><span class="i18n-inline ja">国士無双梅酒</span><span class="i18n-inline en">Kokushi Musou Umeshu</span><span class="i18n-inline zh">国士无双梅酒</span></span><span class="d-origin"><span class="i18n-inline ja">北海道</span><span class="i18n-inline en">Hokkaido</span><span class="i18n-inline zh">北海道</span></span></li>
+        <li><span class="d-name"><span class="i18n-inline ja">千年の眠り梅酒</span><span class="i18n-inline en">Sennen no Nemuri Umeshu</span><span class="i18n-inline zh">千年之眠梅酒</span></span><span class="d-origin"><span class="i18n-inline ja">福岡</span><span class="i18n-inline en">Fukuoka</span><span class="i18n-inline zh">福冈</span></span></li>
+        <li><span class="d-name"><span class="i18n-inline ja">赤兎馬梅酒【限定品】</span><span class="i18n-inline en">Sekitoba Umeshu [Limited]</span><span class="i18n-inline zh">赤兔马梅酒【限定品】</span></span><span class="d-origin"><span class="i18n-inline ja">鹿児島</span><span class="i18n-inline en">Kagoshima</span><span class="i18n-inline zh">鹿儿岛</span></span></li>
+        <li><span class="d-name"><span class="i18n-inline ja">季の梅</span><span class="i18n-inline en">Toki no Ume</span><span class="i18n-inline zh">季之梅</span></span><span class="d-origin"><span class="i18n-inline ja">京都</span><span class="i18n-inline en">Kyoto</span><span class="i18n-inline zh">京都</span></span></li>
+        <li><span class="d-name"><span class="i18n-inline ja">山崎蒸溜所貯蔵ウイスキー梅酒 リッチアンバー【限定品】</span><span class="i18n-inline en">Yamazaki Distillery-Aged Whisky Umeshu, Rich Amber [Limited]</span><span class="i18n-inline zh">山崎蒸馏所窖藏威士忌梅酒 浓郁琥珀色【限定品】</span></span><span class="d-origin"><span class="i18n-inline ja">大阪</span><span class="i18n-inline en">Osaka</span><span class="i18n-inline zh">大阪</span></span></li>
+      </ul>
+      <p class="disclaimer">
+        <span class="i18n-block ja">※効能には個人差があり、医薬品としての効果を示すものではありません。20歳未満の方への酒類提供はできません。</span>
+        <span class="i18n-block en">※ Effects vary by individual and are not medicinal claims. Alcohol cannot be served to guests under 20 years old.</span>
+        <span class="i18n-block zh">※ 功效因个人体质而异，并非医药品疗效说明。未满20岁不提供酒类。</span>
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ============ 4. STAFF / PAYMENT / WIFI ============ -->
+  <section id="staff" class="tab-panel">
+
+    <div class="card">
+      <h2><span class="ico">🔔</span>
+        <span class="i18n-inline ja">店員の呼び方</span>
+        <span class="i18n-inline en">Calling Staff</span>
+        <span class="i18n-inline zh">呼叫店员</span>
+      </h2>
+      <p class="i18n-block ja">卓上の呼出しボタンを押してください。または「すみません」とお声がけください。</p>
+      <p class="i18n-block en">Press the call button on your table, or simply say "Excuse me."</p>
+      <p class="i18n-block zh">请按桌上的呼叫按钮，或直接说"打扰一下"。</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">💳</span>
+        <span class="i18n-inline ja">お会計</span>
+        <span class="i18n-inline en">Payment</span>
+        <span class="i18n-inline zh">结账</span>
+      </h2>
+      <p class="i18n-block ja">お会計はテーブルにて、または<span class="placeholder">1階レジ</span>にて承ります。現金・クレジットカード・電子マネー・QRコード決済がご利用いただけます。</p>
+      <p class="i18n-block en">Payment can be made at your table or at the <span class="placeholder">register on the 1st floor</span>. We accept cash, credit cards, e-money, and QR code payments.</p>
+      <p class="i18n-block zh">结账可在桌边或<span class="placeholder">一楼收银台</span>进行。我们支持现金、信用卡、电子钱包及二维码支付。</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">📶</span>
+        <span class="i18n-inline ja">Wi-Fiのご利用</span>
+        <span class="i18n-inline en">Wi-Fi Access</span>
+        <span class="i18n-inline zh">Wi-Fi使用方法</span>
+      </h2>
+      <p>
+        SSID: <span class="placeholder">【Wi-Fi名を入力】</span><br>
+        <span class="i18n-inline ja">パスワード</span><span class="i18n-inline en">Password</span><span class="i18n-inline zh">密码</span>:
+        <span class="placeholder">【パスワードを入力】</span>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ico">🚻</span>
+        <span class="i18n-inline ja">お手洗い</span>
+        <span class="i18n-inline en">Restroom</span>
+        <span class="i18n-inline zh">洗手间</span>
+      </h2>
+      <p class="i18n-block ja">お手洗いは<span class="placeholder">【案内場所を入力】</span>にございます。</p>
+      <p class="i18n-block en">Restrooms are located <span class="placeholder">【enter location】</span>.</p>
+      <p class="i18n-block zh">洗手间位于<span class="placeholder">【请填写位置】</span>。</p>
+
+      <p style="margin-top:14px;">
+        <span class="i18n-block ja">お困りのことがございましたら、いつでもお気軽にスタッフにお声がけください。</span>
+        <span class="i18n-block en">If you need any help, please don't hesitate to ask our staff at any time.</span>
+        <span class="i18n-block zh">如有任何需要，请随时告知工作人员。</span>
+      </p>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <span class="i18n-inline ja">ひなべねこ 京都店 ／ 京都府京都市東山区七軒町563番地 ／ 【電話番号】 ／ 【営業時間】</span>
+  <span class="i18n-inline en">Hinabe Neko Kyoto / 563 Shichikenmachi, Higashiyama-ku, Kyoto / 【Phone Number】 / 【Business Hours】</span>
+  <span class="i18n-inline zh">火锅猫 京都店 / 京都府京都市东山区七轩町563番地 / 【电话号码】 / 【营业时间】</span>
+</footer>
+
+<script>
+  // language switching
+  var langBtns = document.querySelectorAll('[data-lang-btn]');
+  langBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var lang = btn.getAttribute('data-lang-btn');
+      document.documentElement.setAttribute('data-lang', lang);
+      langBtns.forEach(function(b){ b.classList.toggle('active', b === btn); });
+      try { localStorage.setItem('hotpot_lang', lang); } catch(e){}
+    });
+  });
+  try {
+    var saved = localStorage.getItem('hotpot_lang');
+    if (saved) {
+      document.documentElement.setAttribute('data-lang', saved);
+      langBtns.forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang-btn') === saved); });
+    }
+  } catch(e){}
+
+  // tab switching
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  var panels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var target = btn.getAttribute('data-tab');
+      tabBtns.forEach(function(b){ b.classList.toggle('active', b === btn); });
+      panels.forEach(function(p){ p.classList.toggle('active', p.id === target); });
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+</script>
+
+</body>
+</html>
