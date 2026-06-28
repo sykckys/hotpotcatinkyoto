@@ -160,6 +160,47 @@
     background:var(--clay);
   }
 
+  .hero-banner{
+    width:100%;
+    max-height:280px;
+    overflow:hidden;
+    position:relative;
+  }
+  .hero-banner img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    object-position:center 48%;
+    display:block;
+    filter:saturate(.7) contrast(1.05) sepia(.15) brightness(.95);
+  }
+  .hero-banner::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to bottom, rgba(46,42,37,0) 55%, var(--bg) 100%);
+    pointer-events:none;
+  }
+
+  .hero-dish{
+    padding:0;
+    overflow:hidden;
+  }
+  .hero-dish .dish-photo{
+    width:100%;
+    display:block;
+    filter:saturate(.92) contrast(1.04) sepia(.06);
+  }
+  .hero-dish .dish-caption{
+    text-align:center;
+    margin:0;
+    padding:12px 0;
+    font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;
+    color:var(--indigo);
+    font-size:.92rem;
+    letter-spacing:.08em;
+  }
+
   main{
     max-width:680px;
     margin:0 auto;
@@ -397,6 +438,10 @@
   </div>
 </header>
 
+<div class="hero-banner">
+  <img src="images/yokai-cat.jpg" alt="ひなべねこ">
+</div>
+
 <nav class="tabs">
   <button class="tab-btn active" data-tab="menu">
     <span class="i18n-inline ja">① メニュー</span>
@@ -434,6 +479,15 @@
 
   <!-- ============ 0. MENU ============ -->
   <section id="menu" class="tab-panel active">
+
+    <div class="card hero-dish">
+      <img src="images/yinyang-hotpot.jpg" alt="陰陽鍋" class="dish-photo">
+      <p class="dish-caption">
+        <span class="i18n-inline ja">薬膳陰陽鍋</span>
+        <span class="i18n-inline en">Yin-Yang Medicinal Hot Pot</span>
+        <span class="i18n-inline zh">阴阳药膳锅</span>
+      </p>
+    </div>
 
     <div class="card">
       <h2><span class="ico">🍲</span>
