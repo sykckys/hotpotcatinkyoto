@@ -180,6 +180,45 @@
     opacity:.88;
     pointer-events:none;
   }
+  .frame::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.5) 1px, transparent 1.4px);
+    background-size:3px 3px;
+    mix-blend-mode:overlay;
+    opacity:.5;
+    pointer-events:none;
+    z-index:1;
+  }
+  .frame.alt::after{
+    background:linear-gradient(135deg, var(--moss) 10%, var(--indigo) 100%);
+  }
+
+  .tape{
+    position:absolute;
+    width:46px;
+    height:18px;
+    background:rgba(140,90,60,.55);
+    box-shadow:0 1px 2px rgba(0,0,0,.2);
+    z-index:3;
+  }
+  .tape::before, .tape::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(45deg, rgba(255,255,255,.18) 0 2px, transparent 2px 5px);
+  }
+
+  .photo-stamp{
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    border:1.5px solid var(--clay);
+    float:right;
+    margin:0 0 10px 12px;
+    box-shadow:0 3px 7px rgba(0,0,0,.2);
+  }
 
   .collage{
     display:flex;
@@ -193,6 +232,7 @@
       repeating-linear-gradient(-60deg, rgba(241,234,216,.05) 0 1px, transparent 1px 26px);
   }
   .collage .polaroid{
+    position:relative;
     width:32%;
     max-width:128px;
     margin:0 -8px;
@@ -207,6 +247,7 @@
   .collage .polaroid .frame{ aspect-ratio:1/1; border-radius:1px; }
 
   .inline-polaroid{
+    position:relative;
     width:118px;
     float:right;
     margin:0 0 12px 14px;
@@ -500,9 +541,18 @@
 </header>
 
 <div class="collage">
-  <div class="polaroid"><div class="frame"><img src="images/interior-1.jpg" alt="座敷席" loading="lazy"></div></div>
-  <div class="polaroid"><div class="frame"><img src="images/garden.jpg" alt="坪庭" loading="lazy"></div></div>
-  <div class="polaroid"><div class="frame"><img src="images/loft-view.jpg" alt="店内" loading="lazy"></div></div>
+  <div class="polaroid">
+    <span class="tape" style="top:-8px;left:8px;transform:rotate(-8deg)"></span>
+    <div class="frame"><img src="images/interior-1.jpg" alt="座敷席" loading="lazy"></div>
+  </div>
+  <div class="polaroid">
+    <span class="tape" style="top:-8px;left:50%;margin-left:-23px;transform:rotate(2deg)"></span>
+    <div class="frame alt"><img src="images/garden.jpg" alt="坪庭" loading="lazy"></div>
+  </div>
+  <div class="polaroid">
+    <span class="tape" style="top:-8px;right:8px;transform:rotate(9deg)"></span>
+    <div class="frame"><img src="images/loft-view.jpg" alt="店内" loading="lazy"></div>
+  </div>
 </div>
 
 <nav class="tabs">
@@ -582,6 +632,7 @@
     </div>
 
     <div class="card">
+      <div class="photo-stamp frame"><img src="images/garden.jpg" alt="坪庭"></div>
       <h2><span class="ico">➕</span>
         <span class="i18n-inline ja">追加メニュー</span>
         <span class="i18n-inline en">Optional Add-on Sets</span>
@@ -735,6 +786,7 @@
 
     <div class="card">
       <div class="inline-polaroid" style="transform:rotate(-3deg)">
+        <span class="tape" style="top:-8px;left:50%;margin-left:-23px;transform:rotate(-3deg)"></span>
         <div class="frame"><img src="images/interior-2.jpg" alt="店内の座敷" loading="lazy"></div>
         <p class="cap">
           <span class="i18n-inline ja">店内の座敷</span>
@@ -794,6 +846,7 @@
   <section id="allergy" class="tab-panel">
 
     <div class="card">
+      <div class="photo-stamp frame alt"><img src="images/interior-1.jpg" alt="店内"></div>
       <h2><span class="ico">⚠️</span>
         <span class="i18n-inline ja">アレルギー表示</span>
         <span class="i18n-inline en">Allergen Information</span>
@@ -941,7 +994,8 @@
 
     <div class="card">
       <div class="inline-polaroid" style="transform:rotate(2deg)">
-        <div class="frame"><img src="images/interior-3.jpg" alt="店内席" loading="lazy"></div>
+        <span class="tape" style="top:-8px;left:50%;margin-left:-23px;transform:rotate(4deg)"></span>
+        <div class="frame alt"><img src="images/interior-3.jpg" alt="店内席" loading="lazy"></div>
         <p class="cap">
           <span class="i18n-inline ja">店内席</span>
           <span class="i18n-inline en">Dining area</span>
@@ -1183,6 +1237,7 @@
   <section id="staff" class="tab-panel">
 
     <div class="card">
+      <div class="photo-stamp frame"><img src="images/loft-view.jpg" alt="店内"></div>
       <h2><span class="ico">🔔</span>
         <span class="i18n-inline ja">店員の呼び方</span>
         <span class="i18n-inline en">Calling Staff</span>
