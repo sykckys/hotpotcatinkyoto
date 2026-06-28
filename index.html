@@ -46,7 +46,11 @@
   html[data-lang="zh"] .i18n-inline.zh{display:inline;}
 
   header.topbar{
-    background:var(--ink);
+    background-color:var(--ink);
+    background-image:
+      repeating-linear-gradient(60deg, rgba(241,234,216,.06) 0 1px, transparent 1px 26px),
+      repeating-linear-gradient(-60deg, rgba(241,234,216,.06) 0 1px, transparent 1px 26px),
+      repeating-linear-gradient(0deg, rgba(241,234,216,.04) 0 1px, transparent 1px 26px);
     color:#f1ead8;
     padding:26px 16px 20px;
     text-align:center;
@@ -54,8 +58,38 @@
     top:0;
     z-index:20;
     border-bottom:1px solid var(--clay);
+    overflow:hidden;
   }
-  .brand{font-size:1.5rem;font-weight:600;letter-spacing:.12em;}
+  header.topbar::before{
+    content:'';
+    position:absolute;
+    right:-16px;
+    top:-14px;
+    width:128px;
+    height:128px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23f1ead8' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M28 52 Q28 38 50 38 Q72 38 72 52 L66 82 L34 82 Z'/%3E%3Cline x1='18' y1='52' x2='82' y2='52'/%3E%3Cpath d='M40 33 Q37 24 44 16'/%3E%3Cpath d='M55 33 Q58 21 50 10'/%3E%3Cpath d='M68 33 Q72 26 65 18'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-size:contain;
+    opacity:.14;
+    pointer-events:none;
+  }
+  .brand{position:relative;font-size:1.5rem;font-weight:600;letter-spacing:.12em;}
+  .hanko{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:30px;
+    height:30px;
+    margin-left:10px;
+    border:1.5px solid #c1693f;
+    border-radius:3px;
+    color:#c1693f;
+    font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;
+    font-size:1rem;
+    line-height:1;
+    transform:rotate(-3deg);
+    vertical-align:middle;
+  }
   .brand-address{font-size:.76rem;opacity:.75;margin-top:8px;letter-spacing:.04em;}
   .brand-sub{font-size:.82rem;opacity:.8;margin-top:14px;letter-spacing:.04em;}
 
@@ -97,6 +131,7 @@
   }
   nav.tabs::-webkit-scrollbar{display:none;}
   .tab-btn{
+    position:relative;
     flex:0 0 auto;
     border:none;
     border-bottom:2px solid transparent;
@@ -112,6 +147,17 @@
     border-bottom-color:var(--indigo);
     color:var(--indigo);
     font-weight:600;
+  }
+  .tab-btn.active::after{
+    content:'';
+    position:absolute;
+    bottom:-2px;
+    left:50%;
+    transform:translateX(-50%);
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--clay);
   }
 
   main{
@@ -130,7 +176,8 @@
     margin-bottom:18px;
   }
   .card h2{
-    margin:0 0 14px;
+    position:relative;
+    margin:0 0 18px;
     padding-bottom:10px;
     border-bottom:1px solid var(--border);
     font-size:1.02rem;
@@ -140,6 +187,18 @@
     align-items:center;
     gap:10px;
     letter-spacing:.03em;
+  }
+  .card h2::after{
+    content:'◆';
+    position:absolute;
+    left:50%;
+    bottom:-7px;
+    transform:translateX(-50%);
+    background:var(--card);
+    padding:0 7px;
+    font-size:.5rem;
+    color:var(--clay);
+    line-height:1;
   }
   .card h2 .ico{font-size:1.1rem;filter:grayscale(1) opacity(.55);}
 
@@ -153,11 +212,10 @@
     letter-spacing:.05em;
   }
   .section-title::after{
-    content:'';
+    content:'◆';
     display:block;
-    width:32px;
-    height:1px;
-    background:var(--clay);
+    font-size:.5rem;
+    color:var(--clay);
     margin:10px auto 0;
   }
 
@@ -179,6 +237,7 @@
 
   .menu-set{
     border:1px solid var(--border);
+    border-left:3px solid var(--clay);
     border-radius:3px;
     padding:14px 16px;
     margin-bottom:14px;
@@ -190,6 +249,7 @@
 
   .herb-card{
     border:1px dashed var(--indigo-soft);
+    border-left:3px solid var(--indigo-soft);
     border-radius:3px;
     padding:10px 14px;
     margin-bottom:10px;
@@ -200,12 +260,25 @@
 
   .drink-group{margin-bottom:22px;}
   .drink-group h3{
+    position:relative;
     font-size:.98rem;
     font-weight:600;
     color:var(--indigo);
     border-bottom:1px solid var(--clay);
     padding-bottom:8px;
-    margin-bottom:10px;
+    margin-bottom:14px;
+  }
+  .drink-group h3::after{
+    content:'◆';
+    position:absolute;
+    left:50%;
+    bottom:-7px;
+    transform:translateX(-50%);
+    background:var(--card);
+    padding:0 7px;
+    font-size:.5rem;
+    color:var(--clay);
+    line-height:1;
   }
   .drink-list{list-style:none;padding:0;margin:0;}
   .drink-list li{
@@ -280,8 +353,21 @@
     color:var(--muted);
     font-size:.78rem;
     margin-top:30px;
-    padding:20px 16px 0;
-    border-top:1px solid var(--border);
+    padding:26px 16px 0;
+    position:relative;
+  }
+  footer::before{
+    content:'';
+    display:block;
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:160px;
+    height:10px;
+    background-image:repeating-radial-gradient(circle at 10px 0, transparent 0 7px, rgba(140,90,60,.45) 7px 8px, transparent 8px 10px);
+    background-size:20px 10px;
+    background-repeat:repeat-x;
   }
 </style>
 </head>
@@ -292,6 +378,7 @@
     <span class="i18n-inline ja">ひなべねこ 京都店</span>
     <span class="i18n-inline en">Hinabe Neko Kyoto</span>
     <span class="i18n-inline zh">火锅猫 京都店</span>
+    <span class="hanko" aria-hidden="true">膳</span>
   </div>
   <div class="brand-address">
     <span class="i18n-inline ja">京都府京都市東山区七軒町563番地</span>
