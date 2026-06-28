@@ -5,17 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>火鍋店 ご案内 / Guide / 指南</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&display=swap');
   :root{
-    --red:#a8201a;
-    --red-dark:#6e1410;
-    --orange:#d4831f;
-    --gold:#d4a843;
-    --gold-light:#f3e3ad;
-    --bg:#fff8ef;
-    --card:#fffdf8;
-    --text:#3b2a25;
-    --muted:#8a7570;
-    --border:#e8d9b5;
+    --ink:#2e2a25;
+    --ink-soft:#5a5247;
+    --indigo:#33495b;
+    --indigo-soft:#5c7888;
+    --clay:#8c5a3c;
+    --moss:#6b7a5e;
+    --bg:#f3eee2;
+    --card:#faf7ef;
+    --text:#3a352e;
+    --muted:#85795f;
+    --border:#ddd3bd;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -23,14 +25,15 @@
     font-family:"Hiragino Sans","Noto Sans JP","Segoe UI",system-ui,-apple-system,sans-serif;
     background-color:var(--bg);
     background-image:
-      radial-gradient(circle at 18px 18px, rgba(168,32,26,.05) 2px, transparent 3px),
-      radial-gradient(circle at 58px 58px, rgba(212,168,67,.08) 2px, transparent 3px);
-    background-size:76px 76px;
+      radial-gradient(circle at 22px 22px, rgba(46,42,37,.035) 1.5px, transparent 2.5px),
+      radial-gradient(circle at 64px 64px, rgba(140,90,60,.04) 1.5px, transparent 2.5px);
+    background-size:88px 88px;
     color:var(--text);
-    line-height:1.7;
+    line-height:1.8;
     padding-bottom:40px;
+    letter-spacing:.01em;
   }
-  h1,h2,h3{font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;}
+  h1,h2,h3{font-family:"Shippori Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;}
 
   /* i18n visibility */
   .i18n-block{display:none;}
@@ -43,51 +46,51 @@
   html[data-lang="zh"] .i18n-inline.zh{display:inline;}
 
   header.topbar{
-    background:radial-gradient(ellipse at top, var(--red) 0%, var(--red-dark) 75%);
-    color:#fff;
-    padding:22px 16px 18px;
+    background:var(--ink);
+    color:#f1ead8;
+    padding:26px 16px 20px;
     text-align:center;
     position:sticky;
     top:0;
     z-index:20;
-    border-bottom:4px solid var(--gold);
-    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    border-bottom:1px solid var(--clay);
   }
-  .brand{font-size:1.55rem;font-weight:700;letter-spacing:.04em;text-shadow:0 1px 3px rgba(0,0,0,.3);}
-  .brand-address{font-size:.78rem;opacity:.9;margin-top:6px;}
-  .brand-sub{font-size:.85rem;opacity:.9;margin-top:10px;}
+  .brand{font-size:1.5rem;font-weight:600;letter-spacing:.12em;}
+  .brand-address{font-size:.76rem;opacity:.75;margin-top:8px;letter-spacing:.04em;}
+  .brand-sub{font-size:.82rem;opacity:.8;margin-top:14px;letter-spacing:.04em;}
 
   .lang-switch{
     display:flex;
     justify-content:center;
     gap:8px;
-    margin-top:14px;
+    margin-top:12px;
   }
   .lang-switch button{
-    border:1px solid rgba(255,255,255,.6);
-    background:rgba(255,255,255,.12);
-    color:#fff;
-    padding:8px 16px;
-    border-radius:999px;
-    font-size:.9rem;
+    border:1px solid rgba(241,234,216,.4);
+    background:transparent;
+    color:#f1ead8;
+    padding:7px 16px;
+    border-radius:2px;
+    font-size:.85rem;
     cursor:pointer;
     transition:background .15s;
+    letter-spacing:.04em;
   }
   .lang-switch button.active{
-    background:#fff;
-    color:var(--red-dark);
-    font-weight:700;
-    border-color:#fff;
+    background:#f1ead8;
+    color:var(--ink);
+    font-weight:600;
+    border-color:#f1ead8;
   }
 
   nav.tabs{
     display:flex;
     overflow-x:auto;
-    gap:6px;
-    padding:12px 10px;
-    background:#fff;
+    gap:2px;
+    padding:0 10px;
+    background:var(--card);
     position:sticky;
-    top:138px;
+    top:140px;
     z-index:19;
     border-bottom:1px solid var(--border);
     -webkit-overflow-scrolling:touch;
@@ -95,21 +98,20 @@
   nav.tabs::-webkit-scrollbar{display:none;}
   .tab-btn{
     flex:0 0 auto;
-    border:1px solid var(--border);
-    background:#fff7f2;
-    color:var(--text);
-    padding:10px 14px;
-    border-radius:10px;
-    font-size:.88rem;
+    border:none;
+    border-bottom:2px solid transparent;
+    background:transparent;
+    color:var(--muted);
+    padding:14px 12px;
+    font-size:.85rem;
     white-space:nowrap;
     cursor:pointer;
+    letter-spacing:.03em;
   }
   .tab-btn.active{
-    background:linear-gradient(135deg,var(--red),var(--red-dark));
-    border-color:var(--red-dark);
-    color:#fff;
-    font-weight:700;
-    box-shadow:0 2px 6px rgba(110,20,16,.35);
+    border-bottom-color:var(--indigo);
+    color:var(--indigo);
+    font-weight:600;
   }
 
   main{
@@ -123,80 +125,86 @@
   .card{
     background:var(--card);
     border:1px solid var(--border);
-    border-top:3px solid var(--gold);
-    border-radius:14px;
-    padding:18px 18px 6px;
-    margin-bottom:16px;
-    box-shadow:0 1px 4px rgba(0,0,0,.04);
+    border-radius:3px;
+    padding:20px 20px 8px;
+    margin-bottom:18px;
   }
   .card h2{
-    margin:0 0 10px;
-    font-size:1.05rem;
-    color:var(--red-dark);
+    margin:0 0 14px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--border);
+    font-size:1.02rem;
+    font-weight:600;
+    color:var(--indigo);
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:10px;
+    letter-spacing:.03em;
   }
-  .card h2 .ico{font-size:1.2rem;}
+  .card h2 .ico{font-size:1.1rem;filter:grayscale(1) opacity(.55);}
 
   .section-title{
-    font-size:1.15rem;
-    color:var(--red-dark);
+    font-size:1.1rem;
+    font-weight:600;
+    color:var(--indigo);
     text-align:center;
-    margin:4px 0 16px;
+    margin:6px 0 18px;
     position:relative;
+    letter-spacing:.05em;
   }
   .section-title::after{
     content:'';
     display:block;
-    width:60px;
-    height:3px;
-    background:var(--gold);
-    margin:8px auto 0;
+    width:32px;
+    height:1px;
+    background:var(--clay);
+    margin:10px auto 0;
   }
 
   .tag{
     display:inline-block;
-    font-size:.7rem;
-    font-weight:700;
-    padding:2px 8px;
-    border-radius:999px;
+    font-size:.68rem;
+    font-weight:600;
+    padding:2px 9px;
+    border-radius:2px;
     margin-left:6px;
     vertical-align:middle;
     white-space:nowrap;
+    letter-spacing:.02em;
   }
-  .tag-vodka{background:#eaf2ff;color:#2952a3;border:1px solid #b9d0f5;}
-  .tag-spicy{background:#ffe3e0;color:#b3261e;border:1px solid #ffb4ab;}
-  .tag-note{background:#fff3d6;color:#8a5a00;border:1px solid var(--gold-light);}
-  .tag-free{background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9;}
+  .tag-vodka{background:#eef1f0;color:#3c5468;border:1px solid #c7d2da;}
+  .tag-spicy{background:#f3e8e1;color:#7a4a35;border:1px solid #ddc4b3;}
+  .tag-note{background:#f1ecdb;color:#6b5a35;border:1px solid #ddd0ab;}
+  .tag-free{background:#edf1e8;color:#51604a;border:1px solid #cdd6bf;}
 
   .menu-set{
     border:1px solid var(--border);
-    border-radius:12px;
+    border-radius:3px;
     padding:14px 16px;
     margin-bottom:14px;
-    background:#fffaf0;
+    background:#f6f1e4;
   }
-  .menu-set h3{margin:0 0 6px;font-size:1rem;color:var(--red-dark);}
+  .menu-set h3{margin:0 0 6px;font-size:.98rem;font-weight:600;color:var(--indigo);}
   .menu-set .items{font-size:.9rem;color:var(--text);}
   .menu-set .desc{font-size:.82rem;color:var(--muted);margin-top:6px;}
 
   .herb-card{
-    border:1px dashed var(--gold);
-    border-radius:10px;
-    padding:10px 12px;
+    border:1px dashed var(--indigo-soft);
+    border-radius:3px;
+    padding:10px 14px;
     margin-bottom:10px;
-    background:#fffdf3;
+    background:#f8f4e9;
   }
-  .herb-card .herb-name{font-weight:700;color:var(--red-dark);}
+  .herb-card .herb-name{font-weight:600;color:var(--indigo);}
   .herb-card .herb-effect{font-size:.85rem;color:var(--muted);margin-top:4px;}
 
   .drink-group{margin-bottom:22px;}
   .drink-group h3{
-    font-size:1rem;
-    color:var(--red-dark);
-    border-bottom:2px solid var(--gold);
-    padding-bottom:6px;
+    font-size:.98rem;
+    font-weight:600;
+    color:var(--indigo);
+    border-bottom:1px solid var(--clay);
+    padding-bottom:8px;
     margin-bottom:10px;
   }
   .drink-list{list-style:none;padding:0;margin:0;}
@@ -205,7 +213,7 @@
     justify-content:space-between;
     align-items:baseline;
     gap:8px;
-    padding:8px 4px;
+    padding:9px 4px;
     border-bottom:1px solid var(--border);
     font-size:.9rem;
   }
@@ -219,23 +227,24 @@
     border-top:1px dashed var(--border);
     margin-top:10px;
     padding-top:8px;
+    font-style:italic;
   }
 
   ol, ul{padding-left:1.3em;margin:0 0 16px;}
   ol li, ul li{margin-bottom:8px;}
   .note{
-    background:#fff3e6;
-    border-left:4px solid var(--orange);
+    background:#f2ece0;
+    border-left:3px solid var(--clay);
     padding:10px 14px;
-    border-radius:8px;
+    border-radius:2px;
     font-size:.92rem;
     margin:0 0 16px;
   }
   .placeholder{
-    color:#a85d00;
-    background:#fff0d9;
+    color:#7a5a2a;
+    background:#f1e6cf;
     padding:1px 6px;
-    border-radius:5px;
+    border-radius:2px;
     font-weight:600;
   }
 
@@ -250,7 +259,7 @@
     padding:8px 10px;
     text-align:left;
   }
-  table.allergen th{background:#fbe9e3;}
+  table.allergen th{background:#ece4d1;color:var(--indigo);}
 
   .spice-levels{
     display:flex;
@@ -259,9 +268,9 @@
     margin-bottom:16px;
   }
   .spice-levels span{
-    background:#fdeee8;
+    background:#f3eee2;
     border:1px solid var(--border);
-    border-radius:999px;
+    border-radius:2px;
     padding:6px 12px;
     font-size:.85rem;
   }
@@ -269,9 +278,10 @@
   footer{
     text-align:center;
     color:var(--muted);
-    font-size:.8rem;
-    margin-top:24px;
-    padding:0 16px;
+    font-size:.78rem;
+    margin-top:30px;
+    padding:20px 16px 0;
+    border-top:1px solid var(--border);
   }
 </style>
 </head>
@@ -279,9 +289,9 @@
 
 <header class="topbar">
   <div class="brand">
-    <span class="i18n-inline ja">🍲 ひなべねこ 京都店</span>
-    <span class="i18n-inline en">🍲 Hinabe Neko Kyoto</span>
-    <span class="i18n-inline zh">🍲 火锅猫 京都店</span>
+    <span class="i18n-inline ja">ひなべねこ 京都店</span>
+    <span class="i18n-inline en">Hinabe Neko Kyoto</span>
+    <span class="i18n-inline zh">火锅猫 京都店</span>
   </div>
   <div class="brand-address">
     <span class="i18n-inline ja">京都府京都市東山区七軒町563番地</span>
