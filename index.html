@@ -160,26 +160,25 @@
     background:var(--clay);
   }
 
-  .hero-banner{
-    width:100%;
-    max-height:280px;
-    overflow:hidden;
-    position:relative;
+  .photo-gallery{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    padding:10px 10px 14px;
+    background:var(--ink);
   }
-  .hero-banner img{
-    width:100%;
-    height:280px;
+  .photo-gallery::-webkit-scrollbar{display:none;}
+  .photo-gallery img{
+    flex:0 0 auto;
+    width:78%;
+    max-width:260px;
+    height:200px;
     object-fit:cover;
-    object-position:center 48%;
-    display:block;
-    filter:saturate(.7) contrast(1.05) sepia(.15) brightness(.95);
-  }
-  .hero-banner::after{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to bottom, rgba(46,42,37,0) 55%, var(--bg) 100%);
-    pointer-events:none;
+    border-radius:3px;
+    scroll-snap-align:center;
+    filter:saturate(.85) contrast(1.05) sepia(.08) brightness(.97);
+    box-shadow:0 3px 10px rgba(0,0,0,.3);
   }
 
   .hero-dish{
@@ -410,6 +409,17 @@
     background-size:20px 10px;
     background-repeat:repeat-x;
   }
+  footer .mascot{
+    display:block;
+    width:44px;
+    height:44px;
+    object-fit:cover;
+    object-position:center 60%;
+    border-radius:50%;
+    border:1.5px solid var(--clay);
+    margin:6px auto 12px;
+    filter:saturate(.75) sepia(.1);
+  }
 </style>
 </head>
 <body>
@@ -438,8 +448,12 @@
   </div>
 </header>
 
-<div class="hero-banner">
-  <img src="images/yokai-cat.jpg" alt="ひなべねこ">
+<div class="photo-gallery">
+  <img src="images/interior-1.jpg" alt="座敷席" loading="lazy">
+  <img src="images/interior-2.jpg" alt="座敷席" loading="lazy">
+  <img src="images/garden.jpg" alt="坪庭" loading="lazy">
+  <img src="images/interior-3.jpg" alt="店内席" loading="lazy">
+  <img src="images/loft-view.jpg" alt="店内" loading="lazy">
 </div>
 
 <nav class="tabs">
@@ -1160,6 +1174,7 @@
 </main>
 
 <footer>
+  <img src="images/yokai-cat.jpg" alt="" class="mascot" aria-hidden="true">
   <span class="i18n-inline ja">ひなべねこ 京都店 ／ 京都府京都市東山区七軒町563番地 ／ 【電話番号】 ／ 【営業時間】</span>
   <span class="i18n-inline en">Hinabe Neko Kyoto / 563 Shichikenmachi, Higashiyama-ku, Kyoto / 【Phone Number】 / 【Business Hours】</span>
   <span class="i18n-inline zh">火锅猫 京都店 / 京都府京都市东山区七轩町563番地 / 【电话号码】 / 【营业时间】</span>
