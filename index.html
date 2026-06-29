@@ -169,94 +169,60 @@
     width:100%;
     height:100%;
     object-fit:cover;
-    filter:grayscale(1) contrast(1.15) brightness(1.08);
+    filter:grayscale(1) contrast(1.12) brightness(1.06);
   }
   .frame::after{
     content:'';
     position:absolute;
     inset:0;
-    background:linear-gradient(135deg, var(--indigo) 10%, var(--clay) 100%);
+    background:linear-gradient(160deg, var(--indigo) 15%, var(--clay) 100%);
     mix-blend-mode:color;
-    opacity:.88;
+    opacity:.82;
     pointer-events:none;
   }
   .frame::before{
     content:'';
     position:absolute;
     inset:0;
-    background-image:radial-gradient(rgba(255,255,255,.5) 1px, transparent 1.4px);
+    background-image:radial-gradient(rgba(255,255,255,.4) 1px, transparent 1.4px);
     background-size:3px 3px;
     mix-blend-mode:overlay;
-    opacity:.5;
+    opacity:.3;
     pointer-events:none;
     z-index:1;
   }
   .frame.alt::after{
-    background:linear-gradient(135deg, var(--moss) 10%, var(--indigo) 100%);
-  }
-
-  .tape{
-    position:absolute;
-    width:46px;
-    height:18px;
-    background:rgba(140,90,60,.55);
-    box-shadow:0 1px 2px rgba(0,0,0,.2);
-    z-index:3;
-  }
-  .tape::before, .tape::after{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:repeating-linear-gradient(45deg, rgba(255,255,255,.18) 0 2px, transparent 2px 5px);
+    background:linear-gradient(160deg, var(--moss) 15%, var(--indigo) 100%);
   }
 
   .photo-stamp{
-    width:54px;
-    height:54px;
-    border-radius:50%;
-    border:1.5px solid var(--clay);
+    width:88px;
+    height:64px;
+    border-radius:3px;
     float:right;
-    margin:0 0 10px 12px;
-    box-shadow:0 3px 7px rgba(0,0,0,.2);
+    margin:0 0 10px 14px;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);
   }
 
   .collage{
     display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:0;
-    padding:22px 10px 30px;
+    gap:3px;
+    padding:0;
     background-color:var(--ink);
-    background-image:
-      repeating-linear-gradient(60deg, rgba(241,234,216,.05) 0 1px, transparent 1px 26px),
-      repeating-linear-gradient(-60deg, rgba(241,234,216,.05) 0 1px, transparent 1px 26px);
   }
   .collage .polaroid{
-    position:relative;
-    width:32%;
-    max-width:128px;
-    margin:0 -8px;
-    background:#fbf7ec;
-    padding:6px 6px 14px;
-    border-radius:2px;
-    box-shadow:0 5px 12px rgba(0,0,0,.35);
+    flex:1;
+    aspect-ratio:3/4;
   }
-  .collage .polaroid:nth-child(1){ transform:rotate(-7deg) translateY(8px); z-index:1; }
-  .collage .polaroid:nth-child(2){ transform:rotate(3deg) translateY(-8px); z-index:2; }
-  .collage .polaroid:nth-child(3){ transform:rotate(8deg) translateY(10px); z-index:1; }
-  .collage .polaroid .frame{ aspect-ratio:1/1; border-radius:1px; }
+  .collage .polaroid .frame{ width:100%; height:100%; border-radius:0; }
 
   .inline-polaroid{
     position:relative;
-    width:118px;
+    width:128px;
     float:right;
     margin:0 0 12px 14px;
-    background:#fbf7ec;
-    padding:6px 6px 12px;
-    border-radius:2px;
-    box-shadow:0 4px 9px rgba(0,0,0,.22);
   }
-  .inline-polaroid .frame{ aspect-ratio:4/5; border-radius:1px; }
+  .inline-polaroid .frame{ aspect-ratio:4/5; border-radius:4px; box-shadow:0 3px 10px rgba(0,0,0,.2); }
   .inline-polaroid .cap{
     text-align:center;
     margin:6px 0 0;
@@ -267,21 +233,20 @@
   }
 
   .hero-dish{
-    padding:16px 16px 6px;
+    padding:0;
     background:#f6f1e4;
   }
   .hero-dish .dish-frame{
-    background:#fbf7ec;
-    padding:8px 8px 0;
-    border-radius:2px;
-    box-shadow:0 5px 14px rgba(0,0,0,.18);
-    transform:rotate(-1.5deg);
+    overflow:hidden;
+    border-radius:3px 3px 0 0;
   }
   .hero-dish .dish-photo{
     width:100%;
+    height:240px;
+    object-fit:cover;
+    object-position:center 42%;
     display:block;
-    border-radius:1px;
-    filter:saturate(.95) contrast(1.05) sepia(.05);
+    filter:saturate(.95) contrast(1.06) sepia(.04);
   }
   .hero-dish .dish-caption{
     text-align:center;
@@ -541,18 +506,9 @@
 </header>
 
 <div class="collage">
-  <div class="polaroid">
-    <span class="tape" style="top:-8px;left:8px;transform:rotate(-8deg)"></span>
-    <div class="frame"><img src="images/interior-1.jpg" alt="座敷席" loading="lazy"></div>
-  </div>
-  <div class="polaroid">
-    <span class="tape" style="top:-8px;left:50%;margin-left:-23px;transform:rotate(2deg)"></span>
-    <div class="frame alt"><img src="images/garden.jpg" alt="坪庭" loading="lazy"></div>
-  </div>
-  <div class="polaroid">
-    <span class="tape" style="top:-8px;right:8px;transform:rotate(9deg)"></span>
-    <div class="frame"><img src="images/loft-view.jpg" alt="店内" loading="lazy"></div>
-  </div>
+  <div class="polaroid"><div class="frame"><img src="images/interior-1.jpg" alt="座敷席" loading="lazy"></div></div>
+  <div class="polaroid"><div class="frame alt"><img src="images/garden.jpg" alt="坪庭" loading="lazy"></div></div>
+  <div class="polaroid"><div class="frame"><img src="images/loft-view.jpg" alt="店内" loading="lazy"></div></div>
 </div>
 
 <nav class="tabs">
@@ -769,8 +725,7 @@
   <section id="rules" class="tab-panel">
 
     <div class="card">
-      <div class="inline-polaroid" style="transform:rotate(-3deg)">
-        <span class="tape" style="top:-8px;left:50%;margin-left:-23px;transform:rotate(-3deg)"></span>
+      <div class="inline-polaroid">
         <div class="frame"><img src="images/interior-2.jpg" alt="店内の座敷" loading="lazy"></div>
         <p class="cap">
           <span class="i18n-inline ja">店内の座敷</span>
@@ -836,44 +791,67 @@
         <span class="i18n-inline en">Allergen Information</span>
         <span class="i18n-inline zh">过敏原信息</span>
       </h2>
-      <p class="i18n-block ja">当店のメニューには、卵・乳・小麦・えび・かに・落花生・そば 等を含む商品がございます。<br>アレルギーをお持ちのお客様は、<strong>ご注文前に必ず店員にお申し出ください</strong>。</p>
-      <p class="i18n-block en">Our menu includes items containing egg, dairy, wheat, shrimp, crab, peanuts, buckwheat, and other allergens.<br><strong>If you have any food allergies, please inform a staff member before ordering.</strong></p>
-      <p class="i18n-block zh">本店菜单中含有蛋、乳制品、小麦、虾、蟹、花生、荞麦等过敏原成分。<br><strong>如有食物过敏，请在点餐前务必告知店员。</strong></p>
-
-      <p class="note">
-        <span class="i18n-block ja">※鍋のスープには<strong>豆乳・小麦・えび</strong>が含まれます。これらにアレルギーのあるお客様は、ご注文前に必ずお申し出ください。</span>
-        <span class="i18n-block en">※ The hot pot broth itself contains <strong>soy milk, wheat, and shrimp</strong>. If you are allergic to any of these, please inform staff before ordering.</span>
-        <span class="i18n-block zh">※ 火锅汤底本身含有<strong>豆浆、小麦、虾</strong>成分。如对此过敏，请在点餐前务必告知店员。</span>
-      </p>
+      <p class="i18n-block ja">当店のメニューには、下記の特定原材料を含む商品がございます。<br>アレルギーをお持ちのお客様は、<strong>ご注文前に必ず店員にお申し出ください</strong>。</p>
+      <p class="i18n-block en">Our menu includes items containing the allergens listed below.<br><strong>If you have any food allergies, please inform a staff member before ordering.</strong></p>
+      <p class="i18n-block zh">本店菜单中含有以下过敏原成分。<br><strong>如有食物过敏，请在点餐前务必告知店员。</strong></p>
 
       <table class="allergen">
         <tr>
-          <th class="i18n-inline ja">主なアレルゲン</th>
-          <th class="i18n-inline en">Common Allergens</th>
-          <th class="i18n-inline zh">主要过敏原</th>
+          <th>
+            <span class="i18n-inline ja">料理</span>
+            <span class="i18n-inline en">Dish</span>
+            <span class="i18n-inline zh">菜品</span>
+          </th>
+          <th>
+            <span class="i18n-inline ja">含まれるアレルゲン</span>
+            <span class="i18n-inline en">Allergens</span>
+            <span class="i18n-inline zh">过敏原</span>
+          </th>
         </tr>
         <tr>
           <td>
-            <span class="i18n-inline ja">卵・乳・小麦・そば</span>
-            <span class="i18n-inline en">Egg / Dairy / Wheat / Buckwheat</span>
-            <span class="i18n-inline zh">蛋 / 乳制品 / 小麦 / 荞麦</span>
+            <span class="i18n-inline ja">鍋スープ(白湯・麻辣共通)</span>
+            <span class="i18n-inline en">Hot Pot Broth (both white &amp; mala)</span>
+            <span class="i18n-inline zh">火锅汤底(白汤・麻辣通用)</span>
+          </td>
+          <td>
+            <span class="i18n-inline ja">鶏肉・豚肉・大豆(豆乳)</span>
+            <span class="i18n-inline en">Chicken, Pork, Soy (soy milk)</span>
+            <span class="i18n-inline zh">鸡肉、猪肉、大豆(豆浆)</span>
           </td>
         </tr>
         <tr>
           <td>
-            <span class="i18n-inline ja">えび・かに・いか</span>
-            <span class="i18n-inline en">Shrimp / Crab / Squid</span>
-            <span class="i18n-inline zh">虾 / 蟹 / 鱿鱼</span>
+            <span class="i18n-inline ja">水餃子</span>
+            <span class="i18n-inline en">Boiled Dumplings</span>
+            <span class="i18n-inline zh">水饺</span>
+          </td>
+          <td>
+            <span class="i18n-inline ja">えび・小麦・鶏肉</span>
+            <span class="i18n-inline en">Shrimp, Wheat, Chicken</span>
+            <span class="i18n-inline zh">虾、小麦、鸡肉</span>
           </td>
         </tr>
         <tr>
           <td>
-            <span class="i18n-inline ja">落花生・くるみ・大豆</span>
-            <span class="i18n-inline en">Peanuts / Walnuts / Soy</span>
-            <span class="i18n-inline zh">花生 / 核桃 / 大豆</span>
+            <span class="i18n-inline ja">中華麺</span>
+            <span class="i18n-inline en">Chinese Noodles</span>
+            <span class="i18n-inline zh">中华面</span>
+          </td>
+          <td>
+            <span class="i18n-inline ja">小麦</span>
+            <span class="i18n-inline en">Wheat</span>
+            <span class="i18n-inline zh">小麦</span>
           </td>
         </tr>
       </table>
+
+      <p class="note">
+        <span class="i18n-block ja">※スープには山薬の一種である「淮山」も使用しております。やまいもにアレルギーのある方は、かぶれ等の症状が出る可能性がありますのでご注意ください。<br>※その他、玉ねぎ・にんにく・昆布・唐辛子・各種香辛料(クローブ、クミン、花椒 等)・薬膳食材(クコの実、なつめ、当帰、甘草、党参 等)を使用しております。持病やお薬を服用中の方は、ご注文前にスタッフへご相談ください。</span>
+        <span class="i18n-block en">※ The broth also uses huai shan, a type of Chinese yam. If you are allergic to mountain yam (yamaimo), please be aware this may cause irritation.<br>※ The broth is also seasoned with onion, garlic, kelp, chili peppers, various spices (clove, cumin, Sichuan pepper, etc.) and medicinal/herbal ingredients (goji berry, jujube, dong gui, licorice root, codonopsis, etc.). Guests with health conditions or taking medication should consult staff before ordering.</span>
+        <span class="i18n-block zh">※ 汤底中也使用了山药的一种「淮山」。对山药过敏的客人请注意，可能引起皮肤不适等反应。<br>※ 汤底还使用了洋葱、大蒜、海带、辣椒、各种香料(丁香、孜然、花椒等)及药膳食材(枸杞、红枣、当归、甘草、党参等)。患有疾病或服药中的客人，请在点餐前咨询店员。</span>
+      </p>
+
       <p class="note">
         <span class="i18n-block ja">各メニューの詳しいアレルゲン表示は、メニュー表でご確認いただくか、お電話の際にスタッフへお尋ねください。</span>
         <span class="i18n-block en">Detailed allergen information for each dish can be found on the printed menu, or by asking staff when you call to order.</span>
@@ -983,8 +961,7 @@
   <section id="drinks" class="tab-panel">
 
     <div class="card">
-      <div class="inline-polaroid" style="transform:rotate(2deg)">
-        <span class="tape" style="top:-8px;left:50%;margin-left:-23px;transform:rotate(4deg)"></span>
+      <div class="inline-polaroid">
         <div class="frame alt"><img src="images/interior-3.jpg" alt="店内席" loading="lazy"></div>
         <p class="cap">
           <span class="i18n-inline ja">店内席</span>
