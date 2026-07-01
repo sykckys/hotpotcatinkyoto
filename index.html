@@ -258,36 +258,15 @@
     letter-spacing:.08em;
   }
 
-  .panel-header{
-    position:relative;
-    height:110px;
-    margin:0 -16px 20px;
-    overflow:hidden;
-  }
-  .panel-header img{
-    display:block;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    filter:grayscale(1) contrast(1.08) brightness(.92);
-  }
-  .panel-header::before{
-    content:'';
-    position:absolute;
+  #bg-photo{
+    position:fixed;
     inset:0;
-    background:linear-gradient(160deg,var(--indigo) 0%,var(--clay) 100%);
-    mix-blend-mode:color;
-    opacity:.65;
-    z-index:1;
+    background:center/cover no-repeat;
+    filter:grayscale(1) contrast(.9) brightness(1.08);
+    opacity:.11;
+    z-index:-1;
     pointer-events:none;
-  }
-  .panel-header::after{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to bottom,rgba(243,238,226,0) 30%,var(--bg) 100%);
-    z-index:2;
-    pointer-events:none;
+    transition:background-image .01s;
   }
 
   main{
@@ -299,11 +278,13 @@
   .tab-panel.active{display:block;}
 
   .card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:3px;
-    padding:20px 20px 8px;
+    background:rgba(250,247,239,.82);
+    border:1px solid rgba(221,211,189,.5);
+    border-radius:4px;
+    padding:22px 22px 10px;
     margin-bottom:18px;
+    box-shadow:0 2px 10px rgba(46,42,37,.06), 0 0 0 .5px rgba(221,211,189,.35);
+    backdrop-filter:blur(1px);
   }
   .card h2{
     position:relative;
@@ -513,6 +494,8 @@
 </head>
 <body>
 
+<div id="bg-photo" aria-hidden="true"></div>
+
 <header class="topbar">
   <div class="brand">
     <span class="i18n-inline ja">ひなべねこ 京都店</span>
@@ -574,8 +557,6 @@
 
   <!-- ============ 0. MENU ============ -->
   <section id="menu" class="tab-panel active">
-
-    <div class="panel-header"><img src="images/interior-1.jpg" alt="" aria-hidden="true" loading="lazy"></div>
 
     <div class="card">
       <h2><span class="ico">🍲</span>
@@ -706,8 +687,6 @@
   <!-- ============ 1. ORDER ============ -->
   <section id="order" class="tab-panel">
 
-    <div class="panel-header"><img src="images/interior-2.jpg" alt="" aria-hidden="true" loading="lazy"></div>
-
     <div class="card">
       <h2><span class="ico">☎️</span>
         <span class="i18n-inline ja">黒電話でのご注文</span>
@@ -743,8 +722,6 @@
 
   <!-- ============ 2. RULES ============ -->
   <section id="rules" class="tab-panel">
-
-    <div class="panel-header"><img src="images/garden.jpg" alt="" aria-hidden="true" loading="lazy"></div>
 
     <div class="card">
       <h2><span class="ico">🥢</span>
@@ -797,8 +774,6 @@
 
   <!-- ============ 3. ALLERGY ============ -->
   <section id="allergy" class="tab-panel">
-
-    <div class="panel-header"><img src="images/loft-view.jpg" alt="" aria-hidden="true" loading="lazy"></div>
 
     <div class="card">
       <h2><span class="ico">⚠️</span>
@@ -974,8 +949,6 @@
 
   <!-- ============ 5. DRINKS ============ -->
   <section id="drinks" class="tab-panel">
-
-    <div class="panel-header"><img src="images/interior-3.jpg" alt="" aria-hidden="true" loading="lazy"></div>
 
     <div class="card">
       <h2><span class="ico">🍶</span>
@@ -1212,8 +1185,6 @@
   <!-- ============ 4. STAFF / PAYMENT / WIFI ============ -->
   <section id="staff" class="tab-panel">
 
-    <div class="panel-header"><img src="images/interior-2.jpg" alt="" aria-hidden="true" loading="lazy"></div>
-
     <div class="card">
       <h2><span class="ico">🔔</span>
         <span class="i18n-inline ja">店員の呼び方</span>
@@ -1296,6 +1267,19 @@
     }
   } catch(e){}
 
+  // tab photo backgrounds
+  var tabBgMap = {
+    menu:"images/interior-1.jpg",
+    order:"images/interior-2.jpg",
+    rules:"images/garden.jpg",
+    allergy:"images/loft-view.jpg",
+    drinks:"images/interior-3.jpg",
+    staff:"images/interior-2.jpg"
+  };
+  var bgPhoto = document.getElementById('bg-photo');
+  function setBg(tab){ if(bgPhoto && tabBgMap[tab]) bgPhoto.style.backgroundImage = "url('"+tabBgMap[tab]+"')"; }
+  setBg('menu');
+
   // tab switching
   var tabBtns = document.querySelectorAll('.tab-btn');
   var panels = document.querySelectorAll('.tab-panel');
@@ -1304,6 +1288,7 @@
       var target = btn.getAttribute('data-tab');
       tabBtns.forEach(function(b){ b.classList.toggle('active', b === btn); });
       panels.forEach(function(p){ p.classList.toggle('active', p.id === target); });
+      setBg(target);
       window.scrollTo({top:0, behavior:'smooth'});
     });
   });
