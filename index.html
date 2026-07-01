@@ -258,6 +258,38 @@
     letter-spacing:.08em;
   }
 
+  .panel-header{
+    position:relative;
+    height:110px;
+    margin:0 -16px 20px;
+    overflow:hidden;
+  }
+  .panel-header img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:grayscale(1) contrast(1.08) brightness(.92);
+  }
+  .panel-header::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(160deg,var(--indigo) 0%,var(--clay) 100%);
+    mix-blend-mode:color;
+    opacity:.65;
+    z-index:1;
+    pointer-events:none;
+  }
+  .panel-header::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to bottom,rgba(243,238,226,0) 30%,var(--bg) 100%);
+    z-index:2;
+    pointer-events:none;
+  }
+
   main{
     max-width:680px;
     margin:0 auto;
@@ -505,12 +537,6 @@
   </div>
 </header>
 
-<div class="collage">
-  <div class="polaroid"><div class="frame"><img src="images/interior-1.jpg" alt="座敷席" loading="lazy"></div></div>
-  <div class="polaroid"><div class="frame alt"><img src="images/garden.jpg" alt="坪庭" loading="lazy"></div></div>
-  <div class="polaroid"><div class="frame"><img src="images/loft-view.jpg" alt="店内" loading="lazy"></div></div>
-</div>
-
 <nav class="tabs">
   <button class="tab-btn active" data-tab="menu">
     <span class="i18n-inline ja">① メニュー</span>
@@ -549,14 +575,7 @@
   <!-- ============ 0. MENU ============ -->
   <section id="menu" class="tab-panel active">
 
-    <div class="card hero-dish">
-      <div class="dish-frame"><img src="images/yinyang-hotpot.jpg" alt="陰陽鍋" class="dish-photo"></div>
-      <p class="dish-caption">
-        <span class="i18n-inline ja">薬膳陰陽鍋</span>
-        <span class="i18n-inline en">Yin-Yang Medicinal Hot Pot</span>
-        <span class="i18n-inline zh">阴阳药膳锅</span>
-      </p>
-    </div>
+    <div class="panel-header"><img src="images/interior-1.jpg" alt="" aria-hidden="true" loading="lazy"></div>
 
     <div class="card">
       <h2><span class="ico">🍲</span>
@@ -588,7 +607,6 @@
     </div>
 
     <div class="card">
-      <div class="photo-stamp frame"><img src="images/garden.jpg" alt="坪庭"></div>
       <h2><span class="ico">➕</span>
         <span class="i18n-inline ja">追加メニュー</span>
         <span class="i18n-inline en">Optional Add-on Sets</span>
@@ -688,6 +706,8 @@
   <!-- ============ 1. ORDER ============ -->
   <section id="order" class="tab-panel">
 
+    <div class="panel-header"><img src="images/interior-2.jpg" alt="" aria-hidden="true" loading="lazy"></div>
+
     <div class="card">
       <h2><span class="ico">☎️</span>
         <span class="i18n-inline ja">黒電話でのご注文</span>
@@ -724,15 +744,9 @@
   <!-- ============ 2. RULES ============ -->
   <section id="rules" class="tab-panel">
 
+    <div class="panel-header"><img src="images/garden.jpg" alt="" aria-hidden="true" loading="lazy"></div>
+
     <div class="card">
-      <div class="inline-polaroid">
-        <div class="frame"><img src="images/interior-2.jpg" alt="店内の座敷" loading="lazy"></div>
-        <p class="cap">
-          <span class="i18n-inline ja">店内の座敷</span>
-          <span class="i18n-inline en">Tatami seating</span>
-          <span class="i18n-inline zh">座席</span>
-        </p>
-      </div>
       <h2><span class="ico">🥢</span>
         <span class="i18n-inline ja">トングの使い方</span>
         <span class="i18n-inline en">Using the Tongs</span>
@@ -784,8 +798,9 @@
   <!-- ============ 3. ALLERGY ============ -->
   <section id="allergy" class="tab-panel">
 
+    <div class="panel-header"><img src="images/loft-view.jpg" alt="" aria-hidden="true" loading="lazy"></div>
+
     <div class="card">
-      <div class="photo-stamp frame alt"><img src="images/interior-1.jpg" alt="店内"></div>
       <h2><span class="ico">⚠️</span>
         <span class="i18n-inline ja">アレルギー表示</span>
         <span class="i18n-inline en">Allergen Information</span>
@@ -960,15 +975,9 @@
   <!-- ============ 5. DRINKS ============ -->
   <section id="drinks" class="tab-panel">
 
+    <div class="panel-header"><img src="images/interior-3.jpg" alt="" aria-hidden="true" loading="lazy"></div>
+
     <div class="card">
-      <div class="inline-polaroid">
-        <div class="frame alt"><img src="images/interior-3.jpg" alt="店内席" loading="lazy"></div>
-        <p class="cap">
-          <span class="i18n-inline ja">店内席</span>
-          <span class="i18n-inline en">Dining area</span>
-          <span class="i18n-inline zh">店内座席</span>
-        </p>
-      </div>
       <h2><span class="ico">🍶</span>
         <span class="i18n-inline ja">アルコール</span>
         <span class="i18n-inline en">Alcoholic Drinks</span>
@@ -1203,8 +1212,9 @@
   <!-- ============ 4. STAFF / PAYMENT / WIFI ============ -->
   <section id="staff" class="tab-panel">
 
+    <div class="panel-header"><img src="images/interior-2.jpg" alt="" aria-hidden="true" loading="lazy"></div>
+
     <div class="card">
-      <div class="photo-stamp frame"><img src="images/loft-view.jpg" alt="店内"></div>
       <h2><span class="ico">🔔</span>
         <span class="i18n-inline ja">店員の呼び方</span>
         <span class="i18n-inline en">Calling Staff</span>
