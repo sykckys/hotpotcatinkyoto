@@ -368,6 +368,7 @@
   }
   .herb-card .herb-name{font-weight:600;color:var(--indigo);}
   .herb-card .herb-effect{font-size:.85rem;color:var(--muted);margin-top:4px;}
+  .herb-card .herb-allergy{font-size:.8rem;color:#6b3620;margin-top:8px;padding:5px 10px;background:rgba(243,230,215,.7);border-left:2px solid var(--clay);border-radius:2px;}
 
   .drink-group{margin-bottom:22px;}
   .drink-group h3{
@@ -837,9 +838,9 @@
       </table>
 
       <p class="note">
-        <span class="i18n-block ja">※スープには山薬の一種である「淮山」も使用しております。やまいもにアレルギーのある方は、かぶれ等の症状が出る可能性がありますのでご注意ください。<br>※その他、玉ねぎ・にんにく・昆布・唐辛子・各種香辛料(クローブ、クミン、花椒 等)・薬膳食材(クコの実、なつめ、当帰、甘草、党参 等)を使用しております。持病やお薬を服用中の方は、ご注文前にスタッフへご相談ください。</span>
-        <span class="i18n-block en">※ The broth also uses huai shan, a type of Chinese yam. If you are allergic to mountain yam (yamaimo), please be aware this may cause irritation.<br>※ The broth is also seasoned with onion, garlic, kelp, chili peppers, various spices (clove, cumin, Sichuan pepper, etc.) and medicinal/herbal ingredients (goji berry, jujube, dong gui, licorice root, codonopsis, etc.). Guests with health conditions or taking medication should consult staff before ordering.</span>
-        <span class="i18n-block zh">※ 汤底中也使用了山药的一种「淮山」。对山药过敏的客人请注意，可能引起皮肤不适等反应。<br>※ 汤底还使用了洋葱、大蒜、海带、辣椒、各种香料(丁香、孜然、花椒等)及药膳食材(枸杞、红枣、当归、甘草、党参等)。患有疾病或服药中的客人，请在点餐前咨询店员。</span>
+        <span class="i18n-block ja">※スープには山薬の一種「淮山」を使用しています。やまいも（特定原材料に準ずる品目）にアレルギーのある方はご注意ください。<br>※クコの実はもも（特定原材料に準ずる品目）と類似したタンパク質を含むため、もものアレルギーがある方は交差反応が起きる場合があります。<br>※花椒（ホアジャオ）は、花粉症の方に口腔アレルギー症候群を引き起こす場合があります。<br>※その他、玉ねぎ・にんにく・昆布・唐辛子・各種香辛料（クローブ、クミン等）・薬膳食材（なつめ、当帰、甘草、党参等）を使用しています。持病やお薬を服用中の方は、ご注文前にスタッフへご相談ください。</span>
+        <span class="i18n-block en">※ The broth contains huai shan (a variety of Chinese yam). Guests with a yamaimo/mountain yam allergy — a recommended-label allergen in Japan — may experience skin reactions.<br>※ Goji berry shares similar proteins to peach (a recommended-label allergen) and may cause cross-reactive symptoms in those with peach allergies.<br>※ Sichuan pepper (花椒) may trigger Oral Allergy Syndrome in guests with hay fever or pollen allergies.<br>※ The broth also contains onion, garlic, kelp, chili pepper, various spices (clove, cumin, etc.) and herbal ingredients (jujube, dong gui, licorice root, codonopsis, etc.). Guests with health conditions or taking medication should consult staff before ordering.</span>
+        <span class="i18n-block zh">※ 汤底使用了山药的一种「淮山」。对山药（日本推荐标注过敏原）过敏的客人请注意，可能引起皮肤不适等反应。<br>※ 枸杞含有与桃子（推荐标注过敏原）相似的蛋白质，对桃子过敏者可能发生交叉反应，请注意。<br>※ 花椒可能对花粉症患者引起口腔过敏综合征，请留意。<br>※ 汤底还含有洋葱、大蒜、海带、辣椒、各种香料（丁香、孜然等）及药膳食材（红枣、当归、甘草、党参等）。患有疾病或服药中的客人，请在点餐前咨询店员。</span>
       </p>
 
       <p class="note">
@@ -884,6 +885,11 @@
           <span class="i18n-block en">A type of Korean ginseng cultivated in the Aizu region of Fukushima. In traditional Chinese medicine it is valued as a tonic root said to support vitality, circulation, and recovery from fatigue.</span>
           <span class="i18n-block zh">产自福岛县会津地区的高丽人参。在中医里被视为滋补强壮、促进血液循环、缓解疲劳的珍贵药用人参。</span>
         </div>
+        <div class="herb-allergy">
+          <span class="i18n-block ja">⚠ ウコギ科植物への過敏症がある方・薬を服用中の方（血液凝固薬・降圧薬等）は摂取前にスタッフへご相談ください。</span>
+          <span class="i18n-block en">⚠ Use caution if you are sensitive to plants in the Araliaceae family, or if you are taking blood thinners or blood pressure medication.</span>
+          <span class="i18n-block zh">⚠ 对五加科植物过敏者请注意。服用抗凝血药或降压药期间请事先咨询工作人员。</span>
+        </div>
       </div>
 
       <div class="herb-card">
@@ -896,6 +902,11 @@
           <span class="i18n-block ja">ブラジル原産の機能性キノコ。免疫力のサポートや抗酸化作用が期待されるとして、健康食材として親しまれています。</span>
           <span class="i18n-block en">A functional mushroom originally from Brazil, popularly valued for its potential to support immune function and provide antioxidant benefits.</span>
           <span class="i18n-block zh">原产于巴西的功能性菇类，作为有助于支持免疫力、具有抗氧化作用的健康食材而广受喜爱。</span>
+        </div>
+        <div class="herb-allergy">
+          <span class="i18n-block ja">⚠ キノコ類（しいたけ・まつたけ・マイタケ等）にアレルギーのある方は、同様の反応が出る可能性があります。</span>
+          <span class="i18n-block en">⚠ Those with allergies to mushrooms (shiitake, matsutake, maitake, etc.) may experience cross-reactive symptoms.</span>
+          <span class="i18n-block zh">⚠ 对菌类（香菇、松茸、舞茸等）过敏者可能出现类似反应，请注意。</span>
         </div>
       </div>
 
@@ -910,6 +921,11 @@
           <span class="i18n-block en">Known in traditional Chinese medicine as "Hai Ma," this is a prized traditional ingredient long used to support vitality and circulation.</span>
           <span class="i18n-block zh">中医学中称为"海马"，自古以来被视为珍贵食材，用于滋补强壮、促进血液循环。</span>
         </div>
+        <div class="herb-allergy">
+          <span class="i18n-block ja">⚠ 魚類に分類されます。魚アレルギーのある方はお召し上がりをお控えください。</span>
+          <span class="i18n-block en">⚠ Classified as a fish. Guests with fish allergies should avoid this item.</span>
+          <span class="i18n-block zh">⚠ 属于鱼类食材。对鱼类过敏者请勿食用。</span>
+        </div>
       </div>
 
       <div class="herb-card">
@@ -923,6 +939,11 @@
           <span class="i18n-block en">Made from the dried velvet of young deer antlers, this is one of the most celebrated tonics in Chinese medicine, traditionally said to warm the body and replenish vitality.</span>
           <span class="i18n-block zh">将鹿的嫩角干燥制成的传统药材，是中医里具代表性的强壮滋补食材，相传可温补身体、补充元气。</span>
         </div>
+        <div class="herb-allergy">
+          <span class="i18n-block ja">⚠ 動物性タンパク質由来です。まれに皮膚症状・消化器症状が報告されています。薬を服用中の方はご相談ください。</span>
+          <span class="i18n-block en">⚠ Derived from animal protein. Rare cases of skin or digestive reactions have been reported. Consult staff if you are on medication.</span>
+          <span class="i18n-block zh">⚠ 为动物性蛋白质来源。偶有皮肤或消化道不适的报告。服药期间请事先咨询工作人员。</span>
+        </div>
       </div>
 
       <div class="herb-card">
@@ -935,6 +956,11 @@
           <span class="i18n-block ja">高地に生息する蛾の幼虫に寄生する菌類から作られる、中国伝統医学を代表する滋養強壮素材。スタミナや活力を支えるとされています。</span>
           <span class="i18n-block en">Formed from a fungus that grows on high-altitude moth larvae, this is one of the most renowned tonics in Chinese medicine, traditionally associated with stamina and vitality.</span>
           <span class="i18n-block zh">由寄生在高原蛾类幼虫上的菌类制成，是中国传统医学中极具代表性的滋补食材，相传有助于增强体力与元气。</span>
+        </div>
+        <div class="herb-allergy">
+          <span class="i18n-block ja">⚠ 菌類（キノコ類）と昆虫由来のタンパク質を含みます。キノコアレルギー・昆虫アレルギーのある方はご注意ください。</span>
+          <span class="i18n-block en">⚠ Contains both fungal (mushroom-type) and insect-derived proteins. Caution for those with mushroom or insect allergies.</span>
+          <span class="i18n-block zh">⚠ 含有真菌（菌类）和昆虫来源的蛋白质。对菌类或昆虫过敏者请注意。</span>
         </div>
       </div>
 
